@@ -1,0 +1,23 @@
+C:\dev\C#\PFM5\bin\Debug\PFM5.exe.config
+C:\dev\C#\PFM5\bin\Debug\PFM5.exe
+C:\dev\C#\PFM5\bin\Debug\PFM5.pdb
+C:\dev\C#\PFM5\obj\Debug\PFM5.csprojAssemblyReference.cache
+C:\dev\C#\PFM5\obj\Debug\PFM5.Properties.Resources.resources
+C:\dev\C#\PFM5\obj\Debug\PFM5.csproj.GenerateResource.cache
+C:\dev\C#\PFM5\obj\Debug\PFM5.csproj.CoreCompileInputs.cache
+C:\dev\C#\PFM5\obj\Debug\PFM5.exe
+C:\dev\C#\PFM5\obj\Debug\PFM5.pdb
+C:\dev\C#\PFM5\obj\Debug\PFM5.LoadingScreen.resources
+C:\dev\C#\PFM5\Version 1\bin\Debug\PFM5.exe.config
+C:\dev\C#\PFM5\Version 1\bin\Debug\PFM5.exe
+C:\dev\C#\PFM5\Version 1\bin\Debug\PFM5.pdb
+C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.csprojAssemblyReference.cache
+C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.LoadingScreen.resources
+C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.Properties.Resources.resources
+C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.csproj.GenerateResource.cache
+C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.csproj.CoreCompileInputs.cache
+C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.exe
+C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.pdb
+C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.AnimeListGUI.resources
+C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.Favourites.resources
+C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.QuoteDialog.resources
