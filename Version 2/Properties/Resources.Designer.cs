@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PFM5.Properties {
+namespace PFM5.forms.Properties {
     using System;
     
     

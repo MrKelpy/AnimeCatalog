@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using PFM5.forms;
 
 namespace PFM5
 {
@@ -14,7 +15,7 @@ namespace PFM5
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoadingScreen());
-            Application.Run(new AnimeListGUI());
+            // Application.Run(new AnimeListGUI());
         }
     }
 }
