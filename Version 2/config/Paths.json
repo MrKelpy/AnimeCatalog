@@ -1,5 +1,5 @@
 {
-  "assets": "/assets",
-  "loadingScreens": "/assets/loadingScreens",
-  "config": "/config"
+  "assets": "./assets",
+  "loadingScreens": "./assets/loadingScreens",
+  "config": "./config"
 }

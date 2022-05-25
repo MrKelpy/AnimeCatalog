@@ -32,7 +32,7 @@ namespace PFM5
         // This will be changed in v2 for a dynamic list of anime fetched from some websites.
         // The format for the information in these arrays is:
         // NAME, SYNOPSIS, EPISODE NUMBER, NEXT EPISODE, IMAGE, IS_FAVOURITE, FAVOURITE QUOTE
-        public readonly object[,] _animeList =  {
+        public object[,] _animeList =  {
             {"Attack on Titan", _synopsisAttackOnTitan, "S4E28", "2023", Resources.attack_on_titan, false, ""},
             {"One Piece", _synopsisOnePiece, "1017", "May 15, 2022", Resources.onepiece, false, ""},
             {"Assassination Classroom", _synopsisAssassination, "47", "Finished", Resources.ansatsu_kyoshitsu, false, ""},
@@ -110,7 +110,59 @@ namespace PFM5
             
             return newMatrix;
         }
-        
+
+        private void AddAnime(object[] newAnimeArray)
+            /* Gathers the anime list matrix and adds a new anime into it.
+             * :return void:
+             */
+        {
+            int newMatrixSize = this._animeList.GetLength(0) + 1;
+            object[,] newMatrix = new object[newMatrixSize, this._animeList.GetLength(1)];
+
+            // Copy the old matrix to the new one
+            for (int i = 0; i < this._animeList.GetLength(0); i++)
+            {
+                for (int j = 0; j < this._animeList.GetLength(1); j++)
+                    newMatrix[i, j] = this._animeList[i, j];
+            }
+
+            // Add the new anime to the new matrix
+            for (int i = 0; i < newAnimeArray.Length; i++)
+                newMatrix[newMatrixSize - 1, i] = newAnimeArray[i];
+
+            // Update the anime list matrix
+            this._animeList = newMatrix;
+        }
+
+        private void RemoveAnime(string animeToRemove)
+        /* Gathers the anime list matrix and copies it to a new one, excluding
+         * the anime to remove. This will match with the anime name.
+         * Afterwards, update the old matrix with the new one.
+         *
+         * :return void:
+         */
+        {
+            int newMatrixSize = this._animeList.GetLength(0) - 1;
+            object[,] newMatrix = new object[newMatrixSize, this._animeList.GetLength(1)];
+            int newMatrixHeader = 0;  // The header controls the x position of the new matrix for copying.
+            
+            // Copy the old matrix to the new one, excluding the anime to remove.
+            for (int i = 0; i < this._animeList.GetLength(0); i++)
+            {
+                if (this._animeList[i, 0].ToString() == animeToRemove)
+                    continue;
+
+                for (int j = 0; j < newMatrix.GetLength(1); j++)
+                    newMatrix[newMatrixHeader, j] = this._animeList[i, j];
+                
+                // Increments the header to the next available node, to mimic the iteration number.
+                newMatrixHeader += 1;
+            }
+            
+            // Update the list matrix
+            this._animeList = newMatrix;
+        }
+
         private void btnPrevious_Click(object sender, EventArgs e)
             /* Navigates to the previous page of the catalog. If the current page is the first page,
              * loop around to the last page.
@@ -159,6 +211,57 @@ namespace PFM5
 
             Favourites favouritesAnimeList = new Favourites(favouriteAnimesArray, this);
             favouritesAnimeList.ShowDialog();
+        }
+
+        private void addAnimeBtn_Click(object sender, EventArgs e)
+        /* Brings up four Limited Text Dialogs in succession to allow the user to add in
+         * a new anime entry.
+         *
+         * :return None:
+         */
+        {
+            // Prepares all the dialogs with the anime information in them.
+            LimitedTextDialog animeNameDialog = new LimitedTextDialog(50, dialogName:"Anime Name");
+            LimitedTextDialog animeSynopsisDialog = new LimitedTextDialog(500, dialogName:"Anime Synopsis");
+            LimitedTextDialog animeLastEpisodeDialog = new LimitedTextDialog(10, dialogName:"Last Episode");
+            LimitedTextDialog animeNextEpisodeDialog = new LimitedTextDialog(10, dialogName:"Next Episode Date");
+            LimitedTextDialog[] animeDialogArray = {animeNameDialog, animeSynopsisDialog, animeLastEpisodeDialog, animeNextEpisodeDialog};
+            
+            // Loops through the dialogs verifying the dialog results.
+            foreach (var animeDialog in animeDialogArray)
+            {
+                animeDialog.ShowDialog();
+                if (animeDialog.DialogResult == DialogResult.Cancel) return;
+            }
+            
+            // Builds a new array with the new info, and adds that array into the matrix.
+            object[] newAnimeArray = {animeNameDialog.TextReturned, animeSynopsisDialog.TextReturned,
+                animeLastEpisodeDialog.TextReturned, animeNextEpisodeDialog.TextReturned, Resources.animes, false, ""};
+            
+            this.AddAnime(newAnimeArray);
+            this._navigationHeader = this._animeList.GetLength(0) - 1;
+            this.ShowCatalogPage(this._navigationHeader);
+            
+            // Unlock the delete anime button if there's more than one anime.
+            if (this._animeList.GetLength(0) > 1)
+                btnDeleteAnime.Enabled = true;
+        }
+
+        private void btnDeleteAnime_Click(object sender, EventArgs e)
+        /* Removes the current anime from the animes list matrix and updates the page.
+         * The new page will be either the current index in the array, or the one before it, if the current page is the last.
+         * :return void:
+         */
+        {
+            this.RemoveAnime(this._animeList[this._navigationHeader, 0].ToString());
+            this._navigationHeader = this._navigationHeader > 0 || this._navigationHeader == this._animeList.GetLength(0)
+                    ? this._navigationHeader - 1
+                    : this._navigationHeader;
+            this.ShowCatalogPage(this._navigationHeader);
+            
+            // As a precaution, lock the delete anime button if there's only one anime left.
+            if (this._animeList.GetLength(0) == 1)
+                btnDeleteAnime.Enabled = false;
         }
     }
 }

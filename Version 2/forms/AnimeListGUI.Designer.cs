@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace PFM5.forms
+namespace PFM5
 {
     partial class AnimeListGUI
     {
@@ -44,6 +44,8 @@ namespace PFM5.forms
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblVisualHeader = new System.Windows.Forms.Label();
             this.btnShowFavourites = new System.Windows.Forms.Button();
+            this.addAnimeBtn = new System.Windows.Forms.Button();
+            this.btnDeleteAnime = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAnimeLogo)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +61,7 @@ namespace PFM5.forms
             // 
             // btnFavourites
             // 
-            this.btnFavourites.Location = new System.Drawing.Point(242, 278);
+            this.btnFavourites.Location = new System.Drawing.Point(246, 278);
             this.btnFavourites.Name = "btnFavourites";
             this.btnFavourites.Size = new System.Drawing.Size(126, 47);
             this.btnFavourites.TabIndex = 14;
@@ -98,7 +100,7 @@ namespace PFM5.forms
             // 
             // lblSynopsis
             // 
-            this.lblSynopsis.Location = new System.Drawing.Point(242, 61);
+            this.lblSynopsis.Location = new System.Drawing.Point(242, 50);
             this.lblSynopsis.Name = "lblSynopsis";
             this.lblSynopsis.Size = new System.Drawing.Size(248, 158);
             this.lblSynopsis.TabIndex = 10;
@@ -117,7 +119,7 @@ namespace PFM5.forms
             // pictureAnimeLogo
             // 
             this.pictureAnimeLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureAnimeLogo.Location = new System.Drawing.Point(12, 12);
+            this.pictureAnimeLogo.Location = new System.Drawing.Point(25, 12);
             this.pictureAnimeLogo.Name = "pictureAnimeLogo";
             this.pictureAnimeLogo.Size = new System.Drawing.Size(211, 207);
             this.pictureAnimeLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -154,7 +156,7 @@ namespace PFM5.forms
             // 
             // btnShowFavourites
             // 
-            this.btnShowFavourites.Location = new System.Drawing.Point(367, 278);
+            this.btnShowFavourites.Location = new System.Drawing.Point(378, 278);
             this.btnShowFavourites.Name = "btnShowFavourites";
             this.btnShowFavourites.Size = new System.Drawing.Size(130, 47);
             this.btnShowFavourites.TabIndex = 19;
@@ -162,11 +164,34 @@ namespace PFM5.forms
             this.btnShowFavourites.UseVisualStyleBackColor = true;
             this.btnShowFavourites.Click += new System.EventHandler(this.btnShowFavourites_Click);
             // 
+            // addAnimeBtn
+            // 
+            this.addAnimeBtn.Location = new System.Drawing.Point(25, 227);
+            this.addAnimeBtn.Name = "addAnimeBtn";
+            this.addAnimeBtn.Size = new System.Drawing.Size(101, 34);
+            this.addAnimeBtn.TabIndex = 20;
+            this.addAnimeBtn.Text = "New Anime";
+            this.addAnimeBtn.UseVisualStyleBackColor = true;
+            this.addAnimeBtn.Click += new System.EventHandler(this.addAnimeBtn_Click);
+            // 
+            // btnDeleteAnime
+            // 
+            this.btnDeleteAnime.Location = new System.Drawing.Point(135, 227);
+            this.btnDeleteAnime.Name = "btnDeleteAnime";
+            this.btnDeleteAnime.Size = new System.Drawing.Size(101, 34);
+            this.btnDeleteAnime.TabIndex = 21;
+            this.btnDeleteAnime.Text = "Delete Anime";
+            this.btnDeleteAnime.UseVisualStyleBackColor = true;
+            this.btnDeleteAnime.Click += new System.EventHandler(this.btnDeleteAnime_Click);
+            // 
             // AnimeListGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(736, 342);
+            this.Controls.Add(this.btnDeleteAnime);
+            this.Controls.Add(this.addAnimeBtn);
             this.Controls.Add(this.btnShowFavourites);
             this.Controls.Add(this.lblVisualHeader);
             this.Controls.Add(this.panel1);
@@ -178,6 +203,7 @@ namespace PFM5.forms
             this.Controls.Add(this.lblAnimeName);
             this.Controls.Add(this.pictureAnimeLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Location = new System.Drawing.Point(15, 15);
             this.Name = "AnimeListGUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Anime Catalog";
@@ -185,6 +211,10 @@ namespace PFM5.forms
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button btnDeleteAnime;
+
+        private System.Windows.Forms.Button addAnimeBtn;
 
         private System.Windows.Forms.Button btnShowFavourites;
 

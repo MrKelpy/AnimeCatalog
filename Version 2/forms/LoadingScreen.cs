@@ -71,7 +71,7 @@ namespace PFM5.forms
         {
             // Gather the list of files in the assets directory
             ConfigManager configManager = new ConfigManager();
-            string loadingImagesPath = configManager.GetPathValue("loadingImages");
+            string loadingImagesPath = configManager.GetPathValue("loadingScreens");
             string[] loadingImages = Directory.GetFiles(loadingImagesPath);
             
             // Create a bitmap array and add each image to the array after conversion

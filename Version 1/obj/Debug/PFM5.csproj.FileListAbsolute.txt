@@ -20,4 +20,4 @@ C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.exe
 C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.pdb
 C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.AnimeListGUI.resources
 C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.Favourites.resources
-C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.QuoteDialog.resources
+C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.LimitedTextDialog.resources

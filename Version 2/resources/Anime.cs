@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 
-namespace PFM5.forms.resources
+namespace PFM5.resources
 {
     [SuppressMessage("ReSharper", "RedundantDefaultMemberInitializer")]
     public class Anime

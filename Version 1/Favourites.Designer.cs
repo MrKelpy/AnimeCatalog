@@ -124,7 +124,7 @@ namespace PFM5
             // pictureAnimeLogo
             // 
             this.pictureAnimeLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureAnimeLogo.Location = new System.Drawing.Point(6, 7);
+            this.pictureAnimeLogo.Location = new System.Drawing.Point(19, 7);
             this.pictureAnimeLogo.Name = "pictureAnimeLogo";
             this.pictureAnimeLogo.Size = new System.Drawing.Size(211, 207);
             this.pictureAnimeLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -138,9 +138,9 @@ namespace PFM5
             this.panelComponents.Controls.Add(this.lblSynopsis);
             this.panelComponents.Controls.Add(this.lblAnimeName);
             this.panelComponents.Controls.Add(this.pictureAnimeLogo);
-            this.panelComponents.Location = new System.Drawing.Point(6, 5);
+            this.panelComponents.Location = new System.Drawing.Point(5, 5);
             this.panelComponents.Name = "panelComponents";
-            this.panelComponents.Size = new System.Drawing.Size(717, 222);
+            this.panelComponents.Size = new System.Drawing.Size(718, 222);
             this.panelComponents.TabIndex = 30;
             // 
             // panel1
@@ -175,7 +175,7 @@ namespace PFM5
             // 
             this.lblQuote.BackColor = System.Drawing.Color.Transparent;
             this.lblQuote.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblQuote.Location = new System.Drawing.Point(12, 230);
+            this.lblQuote.Location = new System.Drawing.Point(25, 230);
             this.lblQuote.Name = "lblQuote";
             this.lblQuote.Size = new System.Drawing.Size(211, 34);
             this.lblQuote.TabIndex = 31;

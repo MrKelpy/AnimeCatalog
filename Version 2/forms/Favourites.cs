@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace PFM5.forms
+namespace PFM5
 {
     public partial class Favourites : Form
     {
@@ -116,19 +116,19 @@ namespace PFM5.forms
          * :return void:
          */
         {
-            QuoteDialog quoteDialog = new QuoteDialog(_favouriteList[_navigationHeader, 6].ToString());
+            LimitedTextDialog quoteDialog = new LimitedTextDialog(60, initialText:_favouriteList[_navigationHeader, 6].ToString());
             quoteDialog.ShowDialog();
 
             if (quoteDialog.DialogResult == DialogResult.OK)
             {
-                lblQuote.Text = quoteDialog.QuoteText;
+                lblQuote.Text = quoteDialog.TextReturned;
                 
                 // Find and modify the anime list array with the new quote on the AnimeListGUI form.
                 int currentCharacterIndex =
                     this.FindIndexOfArrayWithElementInMatrix(this._caller._animeList, _favouriteList[_navigationHeader, 1]);
                 
-                this._caller._animeList[currentCharacterIndex, 6] = quoteDialog.QuoteText;
-                this._favouriteList[_navigationHeader, 6] = quoteDialog.QuoteText;
+                this._caller._animeList[currentCharacterIndex, 6] = quoteDialog.TextReturned;
+                this._favouriteList[_navigationHeader, 6] = quoteDialog.TextReturned;
             }
         }
 

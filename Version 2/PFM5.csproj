@@ -75,45 +75,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="forms\AnimeListGUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\AnimeListGUI.Designer.cs">
-      <DependentUpon>AnimeListGUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Favourites.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\Favourites.Designer.cs">
-      <DependentUpon>Favourites.cs</DependentUpon>
-    </Compile>
     <Compile Include="forms\LoadingScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\LoadingScreen.Designer.cs">
       <DependentUpon>LoadingScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\QuoteDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\QuoteDialog.Designer.cs">
-      <DependentUpon>QuoteDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="resources\Anime.cs" />
     <Compile Include="resources\ConfigManager.cs" />
-    <EmbeddedResource Include="forms\AnimeListGUI.resx">
-      <DependentUpon>AnimeListGUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Favourites.resx">
-      <DependentUpon>Favourites.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="forms\LoadingScreen.resx">
       <DependentUpon>LoadingScreen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\QuoteDialog.resx">
-      <DependentUpon>QuoteDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -150,6 +123,14 @@
     <Content Include="assets\LoadingScreens\loading_traveller.png" />
     <Content Include="assets\LoadingScreens\loading_yakshas.png" />
     <Content Include="config\Paths.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(SolutionDir)config\**"
+          CopyToOutputDirectory="PreserveNewest"
+          LinkBase="config\" />
+    <None Include="$(SolutionDir)assets\**"
+          CopyToOutputDirectory="PreserveNewest"
+          LinkBase="config\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
