@@ -23,19 +23,10 @@ namespace PFM5
         public LoadingScreen()
         {
             InitializeComponent();
-            this.HandleStartup();
-        }
-
-        [SuppressMessage("ReSharper", "ObjectCreationAsStatement")]
-        private void HandleStartup()
-        /* Handles the creation of the loading screen and starts up the actual program.
-         * :return void:
-         */
-        {
             this.SetRandomLoadingImage();
             this.AestheticFix();
         }
-        
+
         private void SetRandomLoadingImage()
         /* Sets the background to a random Loading image from the provided Resources folder.
          * Also sets the loading gif into the loading picture box
@@ -74,7 +65,7 @@ namespace PFM5
          */
         {
             this.Show();
-            Thread.Sleep(3*1000);
+            Thread.Sleep(3*1000);  // sleep ftw lmao
             this.Close();
         }
     }

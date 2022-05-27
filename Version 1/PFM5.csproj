@@ -52,6 +52,12 @@
     <Compile Include="AnimeListGUI.Designer.cs">
       <DependentUpon>AnimeListGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="AnimeStruct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnimeStruct.Designer.cs">
+      <DependentUpon>AnimeStruct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Favourites.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -83,8 +83,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="resources\Anime.cs" />
     <Compile Include="resources\ConfigManager.cs" />
+    <Compile Include="resources\content\Anime.cs" />
+    <Compile Include="resources\content\ContentLoader.cs" />
+    <Compile Include="resources\web\AnimeParser.cs" />
     <EmbeddedResource Include="forms\LoadingScreen.resx">
       <DependentUpon>LoadingScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,12 +127,8 @@
     <Content Include="config\Paths.json" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(SolutionDir)config\**"
-          CopyToOutputDirectory="PreserveNewest"
-          LinkBase="config\" />
-    <None Include="$(SolutionDir)assets\**"
-          CopyToOutputDirectory="PreserveNewest"
-          LinkBase="config\" />
+    <None Include="$(SolutionDir)config\**" CopyToOutputDirectory="PreserveNewest" LinkBase="config\" />
+    <None Include="$(SolutionDir)assets\**" CopyToOutputDirectory="PreserveNewest" LinkBase="config\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,6 +6,9 @@ using System.Text.Json;
 namespace PFM5.resources
 {
     public class ConfigManager
+    /* ConfigManager is a class that manages the different configuration files for the program
+     * to function correctly.
+     */
     {
         private const string ConfigPath = "./config";
 
