@@ -16,10 +16,17 @@ namespace PFM5.resources.web
          * :return Dictionary<string, string>: The dictionary containing the anime information
          */
         {
-            HtmlDocument animePage = HtmlWeb.Load(animeUrl);
-            string animeName = animePage.DocumentNode.SelectSingleNode("//h1[@class='h1']").InnerText;
-            string animeLastEpisode = animePage.DocumentNode.SelectNodes("//span[@class='type-airing']")[1].InnerText;
+            // Loads the URLs for the sites to scrape.
+            string animeCountdownUrl = $@"https://animecountdown.com/{animeUrl}";
+            string simklUrl = $@"https://simkl.com/anime/{animeUrl}";
             
+            // Retrieves the information from the loaded websites
+            HtmlDocument animeCountdownPage = HtmlWeb.Load(animeCountdownUrl);
+            HtmlDocument simklPage = HtmlWeb.Load(simklUrl);
+
+            string animeName = animeCountdownPage.DocumentNode.SelectSingleNode("//h1[@class='h1']").InnerText;
+            string animeLastEpisode = animeCountdownPage.DocumentNode.SelectNodes("//span[@class='type-airing']")[1].InnerText;
+            string animePosterUrl = simklPage.DocumentNode.SelectSingleNode("//div[@id='detailPosterImg']").Attributes["src"].Value;
         }
 
 
