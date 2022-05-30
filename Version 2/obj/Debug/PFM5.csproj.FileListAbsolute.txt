@@ -61,3 +61,9 @@ C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_miko.png
 C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_starry.png
 C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_traveller.png
 C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_yakshas.png
+C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.forms.AnimeListGUI.resources
+C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.forms.Favourites.resources
+C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.forms.LimitedTextDialog.resources
+C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.dll
+C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.pdb
+C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.xml

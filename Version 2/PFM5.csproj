@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.11.42.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>packages\HtmlAgilityPack.1.11.42\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.7.0.0-preview.4.22229.4\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -75,6 +78,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="forms\AnimeListGUI.cs" />
+    <Compile Include="forms\AnimeListGUI.Designer.cs" />
+    <Compile Include="forms\Favourites.cs" />
+    <Compile Include="forms\Favourites.Designer.cs" />
+    <Compile Include="forms\LimitedTextDialog.cs" />
+    <Compile Include="forms\LimitedTextDialog.Designer.cs" />
     <Compile Include="forms\LoadingScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +96,9 @@
     <Compile Include="resources\content\Anime.cs" />
     <Compile Include="resources\content\ContentLoader.cs" />
     <Compile Include="resources\web\AnimeParser.cs" />
+    <EmbeddedResource Include="forms\AnimeListGUI.resx" />
+    <EmbeddedResource Include="forms\Favourites.resx" />
+    <EmbeddedResource Include="forms\LimitedTextDialog.resx" />
     <EmbeddedResource Include="forms\LoadingScreen.resx">
       <DependentUpon>LoadingScreen.cs</DependentUpon>
     </EmbeddedResource>

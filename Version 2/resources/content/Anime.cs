@@ -14,8 +14,8 @@ namespace PFM5.resources.content
         private readonly string _lastEpisode;
         private readonly double _nextEpisodeTimestamp;
         private readonly Image _image;
-        private bool _isFavourite = false;
-        private string _favouriteQuote = string.Empty;
+        private bool _isFavourite;
+        private string _favouriteQuote;
         
         public Anime(string name, string synopsis, string lastEpisode, double nextEpisodeTimestamp, Image image)
         {
@@ -24,6 +24,8 @@ namespace PFM5.resources.content
             this._lastEpisode = lastEpisode;
             this._nextEpisodeTimestamp = nextEpisodeTimestamp;
             this._image = image;
+            this._isFavourite = false;
+            this._favouriteQuote = string.Empty;
         }
         
         // All of the getter methods for each property
@@ -32,7 +34,7 @@ namespace PFM5.resources.content
         public string GetLastEpisode() { return this._lastEpisode; }
         public double GetNextEpisodeTimestamp() { return this._nextEpisodeTimestamp; }
         public Image GetImage() { return this._image; }
-        public bool GetIsFavourite() { return this._isFavourite; }
+        public bool GetFavouriteBool() { return this._isFavourite; }
         public string GetFavouriteQuote() { return this._favouriteQuote; }
         
         // All of the setter methods for the properties that can be changed.

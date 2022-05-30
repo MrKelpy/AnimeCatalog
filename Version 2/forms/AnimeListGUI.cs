@@ -1,42 +1,20 @@
 using System;
-using System.Collections;
-using System.Drawing;
 using System.Windows.Forms;
-using PFM5.resources;
+using PFM5.forms.Properties;
+using PFM5.resources.content;
 
 // ReSharper disable StringLiteralTypo
 // ReSharper disable IdentifierTypo
 // ReSharper disable InconsistentNaming
 
-namespace PFM5
+namespace PFM5.forms
 {
     public partial class AnimeListGUI : Form
     {
-        #region Synopsises
-        private static String _synopsisAttackOnTitan =
-            "Attack on Titan (Japanese: 進撃の巨人) is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities surrounded by three enormous walls that protect them from gigantic man-eating humanoids referred to as Titans; the story follows Eren Yeager, who vows to exterminate the Titans after they bring about the destruction of his hometown and the death of his mother.";
-
-        private static String _synopsisOnePiece = 
-            @"One Piece is a Japanese manga series written and illustrated by Eiichiro Oda. The story follows the adventures of Monkey D. Luffy, a boy whose body gained the properties of rubber after unintentionally eating a Devil Fruit. With his pirate crew, the Straw Hat Pirates, Luffy explores the Grand Line in search of the deceased King of the Pirates Gol D Roger's ultimate treasure known as the 'One Piece' in order to become the next King of the Pirates.";
-        
-        private static String _synopsisAssassination = 
-            @"Assassination Classroom is a Japanese science fiction comedy manga series written and illustrated by Yusei Matsui. The series follows the daily life of an extremely powerful octopus-like being working as a junior high homeroom teacher, and his students dedicated to the task of assassinating him to prevent Earth from being destroyed. The students are considered “misfits” in their school and are taught in a separate building; the class he teaches is called 3-E.";
-
-        private static String _synopsisJujutsu =
-            @"Jujutsu Kaisen (呪術廻戦) is a Japanese manga series written and illustrated by Gege Akutami. The story follows high school student Yuji Itadori as he joins a secret organization of Jujutsu Sorcerers in order to kill a powerful Curse named Ryomen Sukuna, of whom Yuji becomes the host.";
-
-        private static String _synopsisKaguyaSama =
-            @"In the senior high school division of Shuchiin Academy, student council president Miyuki Shirogane and vice president Kaguya Shinomiya appear to be a perfect match. Kaguya is the daughter of a wealthy conglomerate family, and Miyuki is the top student at the school and well-known across the prefecture. Although they like each other, they are too proud to confess their love, as they believe whoever does so first would lose. The story follows their many schemes to make the other one confess or at least show signs of affection.";
-        
-        #endregion
         private int _navigationHeader;
-            
-        // This will be changed in v2 for a dynamic list of anime fetched from some websites.
-        // The format for the information in these arrays is:
-        // NAME, SYNOPSIS, EPISODE NUMBER, NEXT EPISODE, IMAGE, IS_FAVOURITE, FAVOURITE QUOTE
-        public ArrayList _animeList = new ArrayList();
+        public Anime[] _animeList = Array.Empty<Anime>();
 
-            public AnimeListGUI()
+        public AnimeListGUI()
         {
             InitializeComponent();
             this.CenterToScreen();
@@ -54,117 +32,71 @@ namespace PFM5
          */
         {
             // Method primary logic
-            lblAnimeName.Text = this._animeList[catalogPage, 0].ToString();
-            lblSynopsis.Text = this._animeList[catalogPage, 1].ToString();
-            lblLastEpisodeNumber.Text = @"Last Episode: " + this._animeList[catalogPage, 2];
-            lblNextEpisodeDate.Text = @"Next Episode Date: " + this._animeList[catalogPage, 3];
-            pictureAnimeLogo.Image = (Image) this._animeList[catalogPage, 4];
+            lblAnimeName.Text = this._animeList[catalogPage].GetName();
+            lblSynopsis.Text = this._animeList[catalogPage].GetSynopsis();
+            lblLastEpisodeNumber.Text = @"Last Episode: " + this._animeList[catalogPage].GetLastEpisode();
+            lblNextEpisodeDate.Text = @"Next Episode Date: " + this._animeList[catalogPage].GetNextEpisodeTimestamp();
+            pictureAnimeLogo.Image = this._animeList[catalogPage].GetImage();
             
             // Method side effects
             lblVisualHeader.Text = $@"Page {this._navigationHeader+1} of {this._animeList.GetLength(0)}";
-            btnFavourites.Text = (bool) this._animeList[catalogPage, 5]? "Remove from Favourites" : "Add to Favourites";
+            btnFavourites.Text = this._animeList[catalogPage].GetFavouriteBool() ? "Remove from Favourites" : "Add to Favourites";
         }
-        
-        private int GetFavouriteAnimeCount()
-        /* Iterates over all of the registered animes and returns the count of those
-         * that are favoured.
-         *
-         * :return void:
+
+        private Anime[] BuildFavouritesArray()
+        /* Creates a new Array of Anime objects that have the IsFavourite field set to True.
+         * :return Anime[]: The array of Anime objects that have the IsFavourite field set to True.
          */
         {
-            int favouriteCount = 0;
-
-            for (byte i = 0; i < this._animeList.GetLength(0); i++)
-            {
-                if ((bool) this._animeList[i, 5])
-                    favouriteCount++;
-            }
-
-            return favouriteCount;
-        }
-        
-        private object[,] BuildFavouritesMatrix()
-        /* Creates a new matrix with only the registered favourite animes.
-         * :return object[,]: The new array containing only the favourites.
-         */
-        {
-            int newMatrixSize = this.GetFavouriteAnimeCount();
-            object[,] newMatrix = new object[newMatrixSize, this._animeList.GetLength(1)];
-            int newMatrixHeader = 0;  // The header controls the x position of the new matrix for copying.
+            int lengthHeader = 0;
+            Anime[] newArray = new Anime[this._animeList.GetLength(0)];
             
             for (byte i = 0; i < this._animeList.GetLength(0); i++)
             {
-                if (!(bool) this._animeList[i, 5]) 
-                    continue;
-                
-                // Copy the values from the old matrix to the new one
-                for (int j = 0; j < this._animeList.GetLength(1); j++)
-                    newMatrix[newMatrixHeader, j] = this._animeList[i, j];
-                
-                newMatrixHeader += 1;  // Jump to the next available node
+                if (!this._animeList[i].GetFavouriteBool()) continue;
+                newArray[lengthHeader] = this._animeList[i];
+                lengthHeader += 1;
             }
             
-            return newMatrix;
+            Array.Resize(ref newArray, lengthHeader);
+            return newArray;
         }
 
-        private void AddAnime(object[] newAnimeArray)
-            /* Gathers the anime list matrix and adds a new anime into it.
-             * :return void:
-             */
-        {
-            int newMatrixSize = this._animeList.GetLength(0) + 1;
-            object[,] newMatrix = new object[newMatrixSize, this._animeList.GetLength(1)];
-
-            // Copy the old matrix to the new one
-            for (int i = 0; i < this._animeList.GetLength(0); i++)
-            {
-                for (int j = 0; j < this._animeList.GetLength(1); j++)
-                    newMatrix[i, j] = this._animeList[i, j];
-            }
-
-            // Add the new anime to the new matrix
-            for (int i = 0; i < newAnimeArray.Length; i++)
-                newMatrix[newMatrixSize - 1, i] = newAnimeArray[i];
-
-            // Update the anime list matrix
-            this._animeList = newMatrix;
-        }
-
-        private void RemoveAnime(string animeToRemove)
-        /* Gathers the anime list matrix and copies it to a new one, excluding
-         * the anime to remove. This will match with the anime name.
-         * Afterwards, update the old matrix with the new one.
-         *
+        private void AddAnime(Anime newAnime)
+        /* Resizes the Array to be one element larger, and adds the new Anime object to the end of the array.
          * :return void:
          */
         {
-            int newMatrixSize = this._animeList.GetLength(0) - 1;
-            object[,] newMatrix = new object[newMatrixSize, this._animeList.GetLength(1)];
-            int newMatrixHeader = 0;  // The header controls the x position of the new matrix for copying.
-            
-            // Copy the old matrix to the new one, excluding the anime to remove.
-            for (int i = 0; i < this._animeList.GetLength(0); i++)
-            {
-                if (this._animeList[i, 0].ToString() == animeToRemove)
-                    continue;
+            Array.Resize(ref this._animeList, this._animeList.Length + 1);
 
-                for (int j = 0; j < newMatrix.GetLength(1); j++)
-                    newMatrix[newMatrixHeader, j] = this._animeList[i, j];
-                
-                // Increments the header to the next available node, to mimic the iteration number.
-                newMatrixHeader += 1;
-            }
+            // Update the anime list array
+            this._animeList[this._animeList.GetUpperBound(0)] = newAnime;
+        }
+
+        private void RemoveAnime(Anime animeToRemove)
+        /* Searches for the given Anime object in the array, and stores its index. From there, moves
+         * every element (starting from the target index+1) in the array one index to the left,
+         * and resizes the array to be one element smaller.
+         * 
+         * :return void:
+         */
+        {
+            int indexToRemove = Array.IndexOf(this._animeList, animeToRemove);
+            if (indexToRemove == -1) return;  // If the anime is not found, do nothing
             
-            // Update the list matrix
-            this._animeList = newMatrix;
+            // Move every element in the array one index to the left, starting from the target index
+            for (int i = indexToRemove + 1; i < this._animeList.GetLength(0); i++)
+                this._animeList[i - 1] = this._animeList[i];
+            
+            Array.Resize(ref this._animeList, this._animeList.Length - 1);
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
-            /* Navigates to the previous page of the catalog. If the current page is the first page,
-             * loop around to the last page.
-             *
-             * :return void:
-             */
+        /* Navigates to the previous page of the catalog. If the current page is the first page,
+         * loop around to the last page.
+         *
+         * :return void:
+         */
         {
             this._navigationHeader = 
                 this._navigationHeader - 1 >= 0 ? this._navigationHeader - 1 : this._animeList.GetLength(0) - 1;
@@ -193,8 +125,7 @@ namespace PFM5
          * :return void:
          */
         {
-            this._animeList[this._navigationHeader, 5] = !(bool) this._animeList[this._navigationHeader, 5];
-            this._animeList[this._navigationHeader, 6] = "";
+            this._animeList[this._navigationHeader].ToggleFavourite();
             this.ShowCatalogPage(this._navigationHeader);
         }
     
@@ -203,7 +134,7 @@ namespace PFM5
          * :return void:
          */
         {
-            object[,] favouriteAnimesArray = this.BuildFavouritesMatrix();
+            Anime[] favouriteAnimesArray = this.BuildFavouritesArray();
 
             Favourites favouritesAnimeList = new Favourites(favouriteAnimesArray, this);
             favouritesAnimeList.ShowDialog();
@@ -211,7 +142,7 @@ namespace PFM5
 
         private void addAnimeBtn_Click(object sender, EventArgs e)
         /* Brings up four Limited Text Dialogs in succession to allow the user to add in
-         * a new anime entry.
+         * a new anime entry, and adds their results into the array.
          *
          * :return None:
          */
@@ -230,13 +161,13 @@ namespace PFM5
                 if (animeDialog.DialogResult == DialogResult.Cancel) return;
             }
             
-            // Builds a new array with the new info, and adds that array into the matrix.
-            object[] newAnimeArray = {animeNameDialog.TextReturned, animeSynopsisDialog.TextReturned,
-                animeLastEpisodeDialog.TextReturned, animeNextEpisodeDialog.TextReturned, Resources.animes, false, ""};
+            // Builds a new array with the new info, and adds that array into the array.
+            Anime newAnime = new Anime(animeNameDialog.TextReturned, animeSynopsisDialog.TextReturned, animeLastEpisodeDialog.TextReturned,
+                double.Parse(animeNextEpisodeDialog.TextReturned), Resources.animes);
             
-            this.AddAnime(newAnimeArray);
+            this.AddAnime(newAnime);
             this._navigationHeader = this._animeList.GetLength(0) - 1;
-            this.ShowCatalogPage(this._navigationHeader);
+            this.ShowCatalogPage(this._navigationHeader);  // Show the new anime page.
             
             // Unlock the delete anime button if there's more than one anime.
             if (this._animeList.GetLength(0) > 1)
@@ -244,12 +175,14 @@ namespace PFM5
         }
 
         private void btnDeleteAnime_Click(object sender, EventArgs e)
-        /* Removes the current anime from the animes list matrix and updates the page.
+        /* Removes the current anime from the animes list array and updates the page.
          * The new page will be either the current index in the array, or the one before it, if the current page is the last.
          * :return void:
          */
         {
-            this.RemoveAnime(this._animeList[this._navigationHeader, 0].ToString());
+            this.RemoveAnime(this._animeList[this._navigationHeader]);
+            
+            // This is a semi-complex ternary operation to handle the page repositioning upon deletion of an anime.
             this._navigationHeader = this._navigationHeader > 0 || this._navigationHeader == this._animeList.GetLength(0)
                     ? this._navigationHeader - 1
                     : this._navigationHeader;

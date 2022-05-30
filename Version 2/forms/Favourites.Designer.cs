@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace PFM5
+namespace PFM5.forms
 {
     partial class Favourites
     {

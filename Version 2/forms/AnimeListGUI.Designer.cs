@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace PFM5
+namespace PFM5.forms
 {
     partial class AnimeListGUI
     {
@@ -147,6 +147,7 @@ namespace PFM5
             // lblVisualHeader
             // 
             this.lblVisualHeader.BackColor = System.Drawing.Color.Transparent;
+            this.lblVisualHeader.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lblVisualHeader.Location = new System.Drawing.Point(496, 230);
             this.lblVisualHeader.Name = "lblVisualHeader";
             this.lblVisualHeader.Size = new System.Drawing.Size(204, 34);

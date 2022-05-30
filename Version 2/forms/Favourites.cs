@@ -1,16 +1,16 @@
 using System;
-using System.Drawing;
 using System.Windows.Forms;
+using PFM5.resources.content;
 
-namespace PFM5
+namespace PFM5.forms
 {
     public partial class Favourites : Form
     {
-        private readonly object[,] _favouriteList;
+        private readonly Anime[] _favouriteList;
         private int _navigationHeader;
         private readonly AnimeListGUI _caller;
 
-        public Favourites(object[,] animeList, AnimeListGUI caller)
+        public Favourites(Anime[] animeList, AnimeListGUI caller)
         {
             InitializeComponent();
             CenterToParent();
@@ -19,22 +19,20 @@ namespace PFM5
             this.ShowCatalogPage(0);  // Displays the first page of the catalog
         }
         
-        private void btnBack_Click(object sender, EventArgs e) => this.Close();
-        
         private bool CheckForFavourites()
-        /* Checks whether there is at least one favourite in the list and sets up
+        /* Checks whether there is at least one favourite in the array and sets up
          * the screen for the scenario after checking.
          *
-         * :return bool: True if there is at least one favourite in the list, false otherwise.
+         * :return bool: True if there is at least one favourite in the array, false otherwise.
          */
         {
-            if (!this.IsMatrixEmpty(_favouriteList)) return this.SetMainComponentsState(false);
+            if (this._favouriteList.Length == 0) return this.SetMainComponentsState(false);
             return this.SetMainComponentsState(true);
         }
 
         private bool SetMainComponentsState(bool state)
         /* Sets the visibility and/or accessibility of every main component
-         * in the favourites catalog form into the requires state.
+         * in the favourites catalog form into the required state.
          *
          * :return void:
          */
@@ -47,20 +45,6 @@ namespace PFM5
             btnEditQuote.Enabled = state;
             lblVisualHeader.Text = state ? lblVisualHeader.Text : "There are no favourites yet.";
             return state;
-        }
-
-        private bool IsMatrixEmpty(object[,] matrix)
-        /* Checks if a given matrix is empty or no favourites exist inside it.
-         * :return bool: Whether the matrix is empty or not.
-         */
-        {
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                    if (matrix[i, j] != default(object[,]) && (bool) matrix[i, 5])
-                        return true; // One of the values isn't defaulted and is favoured so the matrix isn't empty
-
-            } return false;  // All the values are defaulted so the matrix is empty 
         }
         
         private void ShowCatalogPage(int catalogPage)
@@ -78,15 +62,15 @@ namespace PFM5
             // Method primary logic
             btnNext.Enabled = true;
             btnPrevious.Enabled = true;
-            lblAnimeName.Text = this._favouriteList[catalogPage, 0].ToString();
-            lblSynopsis.Text = this._favouriteList[catalogPage, 1].ToString();
-            lblLastEpisodeNumber.Text = @"Last Episode: " + this._favouriteList[catalogPage, 2];
-            lblNextEpisodeDate.Text = @"Next Episode Date: " + this._favouriteList[catalogPage, 3];
-            pictureAnimeLogo.Image = (Image) this._favouriteList[catalogPage, 4];
-            lblQuote.Text = this._favouriteList[catalogPage, 6].ToString();
+            lblAnimeName.Text = this._favouriteList[catalogPage].GetName();
+            lblSynopsis.Text = this._favouriteList[catalogPage].GetSynopsis();
+            lblLastEpisodeNumber.Text = @"Last Episode: " + this._favouriteList[catalogPage].GetLastEpisode();
+            lblNextEpisodeDate.Text = @"Next Episode Date: " + this._favouriteList[catalogPage].GetNextEpisodeTimestamp();
+            pictureAnimeLogo.Image = this._favouriteList[catalogPage].GetImage();
+            lblQuote.Text = this._favouriteList[catalogPage].GetFavouriteQuote();
             
             // Method side effects
-            lblVisualHeader.Text = $@"Page {_navigationHeader+1} of {_favouriteList.GetLength(0)}";
+            lblVisualHeader.Text = $@"Page {this._navigationHeader+1} of {this._favouriteList.GetLength(0)}";
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
@@ -96,7 +80,9 @@ namespace PFM5
          * :return void:
          */
         {
-            this._navigationHeader = _navigationHeader - 1 >= 0 ? _navigationHeader - 1 : _favouriteList.GetLength(0) - 1;
+            this._navigationHeader = 
+                _navigationHeader - 1 >= 0 ? _navigationHeader - 1 : _favouriteList.GetLength(0) - 1;
+            
             this.ShowCatalogPage(_navigationHeader);
         }
 
@@ -107,7 +93,9 @@ namespace PFM5
          * :return void:
          */
         {
-            this._navigationHeader = _navigationHeader + 1 < _favouriteList.GetLength(0)  ? _navigationHeader + 1 : 0;
+            this._navigationHeader = 
+                _navigationHeader + 1 < _favouriteList.GetLength(0)  ? _navigationHeader + 1 : 0;
+            
             this.ShowCatalogPage(_navigationHeader);
         }
 
@@ -116,36 +104,21 @@ namespace PFM5
          * :return void:
          */
         {
-            LimitedTextDialog quoteDialog = new LimitedTextDialog(60, initialText:_favouriteList[_navigationHeader, 6].ToString());
+            LimitedTextDialog quoteDialog = 
+                new LimitedTextDialog(60, initialText:_favouriteList[this._navigationHeader].GetFavouriteQuote());
             quoteDialog.ShowDialog();
 
-            if (quoteDialog.DialogResult == DialogResult.OK)
-            {
-                lblQuote.Text = quoteDialog.TextReturned;
-                
-                // Find and modify the anime list array with the new quote on the AnimeListGUI form.
-                int currentCharacterIndex =
-                    this.FindIndexOfArrayWithElementInMatrix(this._caller._animeList, _favouriteList[_navigationHeader, 1]);
-                
-                this._caller._animeList[currentCharacterIndex, 6] = quoteDialog.TextReturned;
-                this._favouriteList[_navigationHeader, 6] = quoteDialog.TextReturned;
-            }
+            if (quoteDialog.DialogResult != DialogResult.OK) return;
+            lblQuote.Text = quoteDialog.TextReturned;
+            
+            // Find and modify the anime list array with the new quote on the AnimeListGUI form.
+            int currentCharacterIndex =
+                Array.IndexOf(this._caller._animeList, this._favouriteList[this._navigationHeader]);
+            
+            this._caller._animeList[currentCharacterIndex].SetFavouriteQuote(quoteDialog.TextReturned);
+            this._favouriteList[_navigationHeader].SetFavouriteQuote(quoteDialog.TextReturned);
         }
-
-        private int FindIndexOfArrayWithElementInMatrix(object[,] matrix, object element)
-        /* Iterates over a given matrix and returns the index of the first occurence
-         * of an array with a certain element within.
-         *
-         * :return int: The index of the array. If not found, returns -1.
-         */
-        {
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                    if (matrix[i, j] == element)
-                        return i;
-            }
-            return -1;
-        }
+        
+        private void btnBack_Click(object sender, EventArgs e) => this.Close();
     }
 }

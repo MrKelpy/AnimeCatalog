@@ -3,8 +3,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using PFM5.resources;
+using PFM5.resources.content;
 
 namespace PFM5.forms
 {
@@ -91,7 +93,8 @@ namespace PFM5.forms
          */
         {
             this.Show();
-            Thread.Sleep(3*1000);
+            ContentLoader abc = new ContentLoader();
+            Anime[] aa = abc.GetTrendingAnimes();
             this.Close();
         }
     }
