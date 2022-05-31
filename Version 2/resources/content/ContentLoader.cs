@@ -34,17 +34,22 @@ namespace PFM5.resources.content
             HtmlDocument htmlDocument = this._htmlWeb.Load(AnimesUrl);
             HtmlNode trendingAnimes = htmlDocument.DocumentNode.SelectSingleNode(TrendingXPath);
             List<Anime> trendingAnimeList = new List<Anime>();
+            int limit = 0;
 
             foreach (HtmlNode link in trendingAnimes.SelectNodes("//a[@href]"))
             {
                 if (!Regex.IsMatch(link.Attributes["href"].Value, AnimeListingPattern)) continue;
                 
+                // Skip the anime if it's already in the registry
+                if (AnimeRegistry.CheckInRegistry(link.Attributes["href"].Value)) continue;  
+                
                 // Parse out the anime object from the link. And add an instance of Anime to the final list
                 Dictionary<string, dynamic> result = AnimeParser.GetAnimeInfo(link.Attributes["href"].Value);
                 Anime newAnime = new Anime(result);
                 
-                if (AnimeRegistry.CheckInRegistry(newAnime)) continue;  // Skip the anime if it's already in the registry
-                trendingAnimeList.Add(newAnime);
+                trendingAnimeList.Add(newAnime);    
+                if (limit == 10) break;
+                limit++;
             }
 
             return trendingAnimeList;
@@ -59,11 +64,13 @@ namespace PFM5.resources.content
          */
         {
             // Builds the path to save the image at
+            Directory.CreateDirectory(new ConfigManager().GetPathValue("anime_posters"));
+            
             string animeImagePath = 
                 Path.Combine(new ConfigManager().GetPathValue("anime_posters"), anime.GetName() + ".png").Replace(" ", "_");
             
             // Downloads the image and saves it to the path
-            await HttpClientUtils.DownloadFileAsync(new Uri(anime.GetImageUrl()), animeImagePath);
+            await HttpClientUtils.DownloadFileAsync(anime.GetImageUrl(), animeImagePath);
 
             return animeImagePath;
         }

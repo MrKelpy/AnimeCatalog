@@ -51,8 +51,9 @@ namespace PFM5.resources.web
                 { "animeName", animeName },
                 { "animeLastEpisode", animeLastEpisode },
                 { "animeNextEpisodeTimestamp", animeNextEpisodeTimestamp },
-                { "animePosterUrl", animePosterUrl },
-                { "animeSynopsis", animeSynopsis }
+                { "animePosterUrl", "https:" + animePosterUrl },
+                { "animeSynopsis", animeSynopsis },
+                { "animeUrl", animeUrl }
             };
         
             return rawDataDict ;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.IO;
@@ -84,7 +85,7 @@ namespace PFM5.forms
             return loadingImagesArray;
         }
         
-        private void LoadingScreen_Load(object sender, EventArgs e)
+        private async void LoadingScreen_Load(object sender, EventArgs e)
         /* Loads all of the trending animes from the Anime Countdown website into the anime registry
          * and then starts the main program.
          *
@@ -96,12 +97,13 @@ namespace PFM5.forms
 
             // Gets the trending anime contents and loads the poster images into the assets
             List<Anime> animesList = contentLoader.GetTrendingAnimes();
-            Task<string[]> animePaths = Task.WhenAll(animesList.Select(anime => contentLoader.LoadPosterImageFor(anime)));
-            
+            string[] animePaths = await Task.WhenAll(animesList.Select(anime => contentLoader.LoadPosterImageFor(anime)));
+            Debug.WriteLine(string.Join(", ", animePaths));
+
             // Updates every anime in the registry with the new poster image
             for (int i = 0; i < animesList.Count; i++)
             {
-                animesList[i].SetImage(new Bitmap(animePaths.Result[i]));
+                animesList[i].SetImage(new Bitmap(animePaths[i]));
                 AnimeRegistry.LoadIntoAnimeRegistry(animesList[i]);
             }
 

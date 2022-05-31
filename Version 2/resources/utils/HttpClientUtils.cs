@@ -9,7 +9,7 @@ namespace PFM5.resources.utils
     {
         private static readonly HttpClient DefaultHttpClient = new HttpClient();
 
-        public static async Task DownloadFileAsync(Uri uri, string fileName)
+        public static async Task DownloadFileAsync(string uri, string fileName)
         /* Downloads a  file from the specified URL and saves it to the given file name.
          * :return Task: The Task context
          */

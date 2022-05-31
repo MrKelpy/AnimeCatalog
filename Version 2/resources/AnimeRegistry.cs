@@ -17,14 +17,13 @@ namespace PFM5.resources
          */
         {
             string animeRegistryPath = new ConfigManager().GetPathValue("anime_registry");
-            Directory.CreateDirectory(animeRegistryPath);
             string jsonString = File.ReadAllText(animeRegistryPath);
             
             var animeRegistry = JsonSerializer.Deserialize<Dictionary<string, Anime>>(jsonString);
-            animeRegistry[anime.GetName()] = anime;
+            animeRegistry[anime.GetAnimeUrl()] = anime;
         }
 
-        public static bool CheckInRegistry(Anime anime)
+        public static bool CheckInRegistry(string animeUrl)
         /* Checks if a given anime is in the Registry and if it isn't expired already.
          * :return bool: True if the anime is in the registry and not expired, false otherwise.
          */
@@ -34,8 +33,8 @@ namespace PFM5.resources
             var animeRegistry = JsonSerializer.Deserialize<Dictionary<string, Anime>>(jsonString);
         
             // Check if the anime is in the registry and if it isn't expired already.
-            return animeRegistry.ContainsKey(anime.GetName()) &&
-                   animeRegistry[anime.GetName()].GetNextEpisodeTimestamp() < DateTimeOffset.Now.ToUnixTimeSeconds();
+            return animeRegistry.ContainsKey(animeUrl) &&
+                   animeRegistry[animeUrl].GetNextEpisodeTimestamp() < DateTimeOffset.Now.ToUnixTimeSeconds();
         }
 
         public static List<Anime> ReadRegistry()

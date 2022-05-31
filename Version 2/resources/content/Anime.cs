@@ -13,13 +13,15 @@ namespace PFM5.resources.content
         private readonly string _name;
         private readonly string _synopsis;
         private readonly string _lastEpisode;
+        private readonly string _animeUrl;
         private readonly int _nextEpisodeTimestamp;
         private string _imageUrl;
         private Image _image;
         private bool _isFavourite;
         private string _favouriteQuote;
-        
-        public Anime(string name, string synopsis, string lastEpisode, int nextEpisodeTimestamp, string imageUrl)
+
+        public Anime(string name, string synopsis, string lastEpisode, int nextEpisodeTimestamp,
+                string imageUrl, string animeUrl)
         /* First class constructor for manual input without the need of a dictionary 
          */
         {
@@ -28,6 +30,7 @@ namespace PFM5.resources.content
             this._lastEpisode = lastEpisode;
             this._nextEpisodeTimestamp = nextEpisodeTimestamp;
             this._imageUrl = imageUrl;
+            this._animeUrl = animeUrl;
             this._isFavourite = false;
             this._favouriteQuote = string.Empty;
         }
@@ -42,6 +45,7 @@ namespace PFM5.resources.content
             this._lastEpisode = animeDict["animeLastEpisode"];
             this._nextEpisodeTimestamp = animeDict["animeNextEpisodeTimestamp"];
             this._imageUrl = animeDict["animePosterUrl"];
+            this._animeUrl = animeDict["animeUrl"];
             this._isFavourite = false;
             this._favouriteQuote = string.Empty;
         }
@@ -55,11 +59,11 @@ namespace PFM5.resources.content
         public string GetImageUrl() { return this._imageUrl; }
         public bool GetFavouriteBool() { return this._isFavourite; }
         public string GetFavouriteQuote() { return this._favouriteQuote; }
+        public string GetAnimeUrl() { return this._animeUrl; }
         
         // All of the setter methods for the properties that can be changed.
         public void SetFavouriteQuote(string favouriteQuote) { this._favouriteQuote = favouriteQuote; }
         public void ToggleFavourite() { this._isFavourite = !this._isFavourite; }
-        public void SetImageUrl(string imageUrl) { this._imageUrl = imageUrl; }
         public void SetImage(Image image) { this._image = image; }
     }
 }
