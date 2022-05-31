@@ -67,3 +67,4 @@ C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.forms.LimitedTextDialog.resources
 C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.dll
 C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.pdb
 C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.xml
+C:\dev\C#\PFM5\Version 2\bin\Debug\config\AnimeRegistry.json

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 namespace PFM5
 {
     public struct Anime
-        /* This struct implements a convenient way to store the information
+        /* This struct implements a convenient way to store information
          * about a given anime.
          */
     {
@@ -19,13 +19,13 @@ namespace PFM5
         public Anime(string name, string synopsis, string lastEpisode, string nextEpisodeDate, 
             Image banner, bool isFavourite, string favouriteQuote)
         {
-            Name = name;
-            Synopsis = synopsis;
-            LastEpisode = lastEpisode;
-            NextEpisodeDate = nextEpisodeDate;
-            Banner = banner;
-            IsFavourite = isFavourite;
-            FavouriteQuote = favouriteQuote;
+            this.Name = name;
+            this.Synopsis = synopsis;
+            this.LastEpisode = lastEpisode;
+            this.NextEpisodeDate = nextEpisodeDate;
+            this.Banner = banner;
+            this.IsFavourite = isFavourite;
+            this.FavouriteQuote = favouriteQuote;
         }
     }
     

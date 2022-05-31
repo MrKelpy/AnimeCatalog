@@ -61,7 +61,7 @@ namespace PFM5
             // 
             // btnFavourites
             // 
-            this.btnFavourites.Location = new System.Drawing.Point(246, 278);
+            this.btnFavourites.Location = new System.Drawing.Point(242, 278);
             this.btnFavourites.Name = "btnFavourites";
             this.btnFavourites.Size = new System.Drawing.Size(126, 47);
             this.btnFavourites.TabIndex = 14;
@@ -157,7 +157,7 @@ namespace PFM5
             // 
             // btnShowFavourites
             // 
-            this.btnShowFavourites.Location = new System.Drawing.Point(378, 278);
+            this.btnShowFavourites.Location = new System.Drawing.Point(374, 278);
             this.btnShowFavourites.Name = "btnShowFavourites";
             this.btnShowFavourites.Size = new System.Drawing.Size(130, 47);
             this.btnShowFavourites.TabIndex = 19;

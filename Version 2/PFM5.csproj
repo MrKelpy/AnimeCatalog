@@ -92,9 +92,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="resources\AnimeRegistry.cs" />
     <Compile Include="resources\ConfigManager.cs" />
     <Compile Include="resources\content\Anime.cs" />
     <Compile Include="resources\content\ContentLoader.cs" />
+    <Compile Include="resources\utils\HttpClientUtils.cs" />
     <Compile Include="resources\web\AnimeParser.cs" />
     <EmbeddedResource Include="forms\AnimeListGUI.resx" />
     <EmbeddedResource Include="forms\Favourites.resx" />

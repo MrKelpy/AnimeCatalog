@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 
@@ -12,18 +13,35 @@ namespace PFM5.resources.content
         private readonly string _name;
         private readonly string _synopsis;
         private readonly string _lastEpisode;
-        private readonly double _nextEpisodeTimestamp;
-        private readonly Image _image;
+        private readonly int _nextEpisodeTimestamp;
+        private string _imageUrl;
+        private Image _image;
         private bool _isFavourite;
         private string _favouriteQuote;
         
-        public Anime(string name, string synopsis, string lastEpisode, double nextEpisodeTimestamp, Image image)
+        public Anime(string name, string synopsis, string lastEpisode, int nextEpisodeTimestamp, string imageUrl)
+        /* First class constructor for manual input without the need of a dictionary 
+         */
         {
             this._name = name;
             this._synopsis = synopsis;
             this._lastEpisode = lastEpisode;
             this._nextEpisodeTimestamp = nextEpisodeTimestamp;
-            this._image = image;
+            this._imageUrl = imageUrl;
+            this._isFavourite = false;
+            this._favouriteQuote = string.Empty;
+        }
+
+        public Anime(Dictionary<string, dynamic> animeDict)
+        /* Overloading the class with a secondary constructor, usually to quickly create a new
+         * instance of Anime going from a raw data dictionary.
+         */
+        {
+            this._name = animeDict["animeName"];
+            this._synopsis = animeDict["animeSynopsis"];
+            this._lastEpisode = animeDict["animeLastEpisode"];
+            this._nextEpisodeTimestamp = animeDict["animeNextEpisodeTimestamp"];
+            this._imageUrl = animeDict["animePosterUrl"];
             this._isFavourite = false;
             this._favouriteQuote = string.Empty;
         }
@@ -34,11 +52,14 @@ namespace PFM5.resources.content
         public string GetLastEpisode() { return this._lastEpisode; }
         public double GetNextEpisodeTimestamp() { return this._nextEpisodeTimestamp; }
         public Image GetImage() { return this._image; }
+        public string GetImageUrl() { return this._imageUrl; }
         public bool GetFavouriteBool() { return this._isFavourite; }
         public string GetFavouriteQuote() { return this._favouriteQuote; }
         
         // All of the setter methods for the properties that can be changed.
         public void SetFavouriteQuote(string favouriteQuote) { this._favouriteQuote = favouriteQuote; }
         public void ToggleFavourite() { this._isFavourite = !this._isFavourite; }
+        public void SetImageUrl(string imageUrl) { this._imageUrl = imageUrl; }
+        public void SetImage(Image image) { this._image = image; }
     }
 }

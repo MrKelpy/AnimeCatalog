@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using PFM5.resources.content;
 
@@ -6,11 +7,11 @@ namespace PFM5.forms
 {
     public partial class Favourites : Form
     {
-        private readonly Anime[] _favouriteList;
+        private readonly List<Anime> _favouriteList;
         private int _navigationHeader;
         private readonly AnimeListGUI _caller;
 
-        public Favourites(Anime[] animeList, AnimeListGUI caller)
+        public Favourites(List<Anime> animeList, AnimeListGUI caller)
         {
             InitializeComponent();
             CenterToParent();
@@ -26,7 +27,7 @@ namespace PFM5.forms
          * :return bool: True if there is at least one favourite in the array, false otherwise.
          */
         {
-            if (this._favouriteList.Length == 0) return this.SetMainComponentsState(false);
+            if (this._favouriteList.Count == 0) return this.SetMainComponentsState(false);
             return this.SetMainComponentsState(true);
         }
 
@@ -70,7 +71,7 @@ namespace PFM5.forms
             lblQuote.Text = this._favouriteList[catalogPage].GetFavouriteQuote();
             
             // Method side effects
-            lblVisualHeader.Text = $@"Page {this._navigationHeader+1} of {this._favouriteList.GetLength(0)}";
+            lblVisualHeader.Text = $@"Page {this._navigationHeader+1} of {this._favouriteList.Count}";
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
@@ -81,9 +82,9 @@ namespace PFM5.forms
          */
         {
             this._navigationHeader = 
-                _navigationHeader - 1 >= 0 ? _navigationHeader - 1 : _favouriteList.GetLength(0) - 1;
+                this._navigationHeader - 1 >= 0 ? this._navigationHeader - 1 : this._favouriteList.Count - 1;
             
-            this.ShowCatalogPage(_navigationHeader);
+            this.ShowCatalogPage(this._navigationHeader);
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -94,9 +95,9 @@ namespace PFM5.forms
          */
         {
             this._navigationHeader = 
-                _navigationHeader + 1 < _favouriteList.GetLength(0)  ? _navigationHeader + 1 : 0;
+                this._navigationHeader + 1 < this._favouriteList.Count  ? this._navigationHeader + 1 : 0;
             
-            this.ShowCatalogPage(_navigationHeader);
+            this.ShowCatalogPage(this._navigationHeader);
         }
 
         private void btnEditQuote_Click(object sender, EventArgs e)
@@ -112,8 +113,8 @@ namespace PFM5.forms
             lblQuote.Text = quoteDialog.TextReturned;
             
             // Find and modify the anime list array with the new quote on the AnimeListGUI form.
-            int currentCharacterIndex =
-                Array.IndexOf(this._caller._animeList, this._favouriteList[this._navigationHeader]);
+            int currentCharacterIndex = this._caller._animeList.FindIndex(
+                x => x.GetName() == this._favouriteList[this._navigationHeader].GetName());
             
             this._caller._animeList[currentCharacterIndex].SetFavouriteQuote(quoteDialog.TextReturned);
             this._favouriteList[_navigationHeader].SetFavouriteQuote(quoteDialog.TextReturned);

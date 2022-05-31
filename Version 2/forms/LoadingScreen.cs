@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using PFM5.resources;
 using PFM5.resources.content;
@@ -10,11 +13,9 @@ namespace PFM5.forms
 {
     public partial class LoadingScreen : Form
     {
-        // I actually spent a load of time trying to generate this array dynamically but
-        // ended up being unable to because of the limitations imposed by the general scope
-        // of what we've learned
+        // Dynamic loading of images :D
         private readonly Bitmap[] _loadingImages;
-
+        
         public LoadingScreen()
         {
             InitializeComponent();
@@ -84,15 +85,26 @@ namespace PFM5.forms
         }
         
         private void LoadingScreen_Load(object sender, EventArgs e)
-        /* Because I'm limited on what I can do for the Version 1 of this project, aka the version
-         * that has *only* the stuff we learned, what happens upon load is pretty much just being fancy lol.
+        /* Loads all of the trending animes from the Anime Countdown website into the anime registry
+         * and then starts the main program.
          *
          * :return void:
          */
         {
             this.Show();
-            ContentLoader abc = new ContentLoader();
-            Anime[] aa = abc.GetTrendingAnimes();
+            ContentLoader contentLoader = new ContentLoader();
+
+            // Gets the trending anime contents and loads the poster images into the assets
+            List<Anime> animesList = contentLoader.GetTrendingAnimes();
+            Task<string[]> animePaths = Task.WhenAll(animesList.Select(anime => contentLoader.LoadPosterImageFor(anime)));
+            
+            // Updates every anime in the registry with the new poster image
+            for (int i = 0; i < animesList.Count; i++)
+            {
+                animesList[i].SetImage(new Bitmap(animePaths.Result[i]));
+                AnimeRegistry.LoadIntoAnimeRegistry(animesList[i]);
+            }
+
             this.Close();
         }
     }

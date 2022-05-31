@@ -80,9 +80,9 @@ namespace PFM5
          */
         {
             this._navigationHeader = 
-                _navigationHeader - 1 >= 0 ? _navigationHeader - 1 : _favouriteList.GetLength(0) - 1;
+                this._navigationHeader - 1 >= 0 ? this._navigationHeader - 1 : this._favouriteList.GetLength(0) - 1;
             
-            this.ShowCatalogPage(_navigationHeader);
+            this.ShowCatalogPage(this._navigationHeader);
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -93,9 +93,9 @@ namespace PFM5
          */
         {
             this._navigationHeader = 
-                _navigationHeader + 1 < _favouriteList.GetLength(0)  ? _navigationHeader + 1 : 0;
+                this._navigationHeader + 1 < this._favouriteList.GetLength(0) ? this._navigationHeader + 1 : 0;
             
-            this.ShowCatalogPage(_navigationHeader);
+            this.ShowCatalogPage(this._navigationHeader);
         }
 
         private void btnEditQuote_Click(object sender, EventArgs e)
@@ -103,7 +103,7 @@ namespace PFM5
          * :return void:
          */
         {
-            LimitedTextDialog quoteDialog =  new LimitedTextDialog(60, initialText:_favouriteList[this._navigationHeader].FavouriteQuote);
+            LimitedTextDialog quoteDialog =  new LimitedTextDialog(60, initialText:this._favouriteList[this._navigationHeader].FavouriteQuote);
             quoteDialog.ShowDialog();
 
             if (quoteDialog.DialogResult != DialogResult.OK) return;
@@ -114,7 +114,7 @@ namespace PFM5
                 Array.IndexOf(this._caller._animeList, this._favouriteList[this._navigationHeader]);
             
             this._caller._animeList[currentCharacterIndex].FavouriteQuote = quoteDialog.TextReturned;
-            this._favouriteList[_navigationHeader].FavouriteQuote = quoteDialog.TextReturned;
+            this._favouriteList[this._navigationHeader].FavouriteQuote = quoteDialog.TextReturned;
         }
         
         private void btnBack_Click(object sender, EventArgs e) => this.Close();

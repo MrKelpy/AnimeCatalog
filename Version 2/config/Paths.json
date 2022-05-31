@@ -1,5 +1,7 @@
 {
   "assets": "./assets",
   "loadingScreens": "./assets/loadingScreens",
-  "config": "./config"
+  "config": "./config",
+  "anime_posters": "./assets/anime_posters",
+  "anime_registry": "./config/AnimeRegistry.json"
 }

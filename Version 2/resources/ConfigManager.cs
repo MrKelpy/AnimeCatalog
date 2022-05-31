@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using PFM5.resources.content;
+
 // ReSharper disable PossibleNullReferenceException
 
 namespace PFM5.resources
@@ -14,6 +17,8 @@ namespace PFM5.resources
 
         public string GetPathValue(string pathKey)
         /* Returns the path value from the Paths.json file.
+         *
+         * :param pathKey: The key of the path to return.
          * :return string: The path value from the config.
          */
         {
