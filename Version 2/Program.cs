@@ -15,7 +15,7 @@ namespace PFM5
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoadingScreen());
-            // Application.Run(new AnimeListGUI());
+            Application.Run(new AnimeListGUI());
         }
     }
 }

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using PFM5.resources;
 using PFM5.resources.content;
@@ -19,7 +21,7 @@ namespace PFM5.forms
         {
             InitializeComponent();
             this.CenterToScreen();
-            this._animeList = AnimeRegistry.ReadRegistry();
+            this._animeList = AnimeRegistry.ReadRegistry().Values.ToList();
             this.ShowCatalogPage(0);  // Displays the first page of the catalog
         }
 
@@ -36,9 +38,11 @@ namespace PFM5.forms
             // Method primary logic
             lblAnimeName.Text = this._animeList[catalogPage].GetName();
             lblSynopsis.Text = this._animeList[catalogPage].GetSynopsis();
+            string formattedDate = DateTimeOffset
+                .FromUnixTimeSeconds(this._animeList[catalogPage].GetNextEpisodeTimestamp()).ToString();
             lblLastEpisodeNumber.Text = @"Last Episode: " + this._animeList[catalogPage].GetLastEpisode();
-            lblNextEpisodeDate.Text = @"Next Episode Date: " + this._animeList[catalogPage].GetNextEpisodeTimestamp();
-            pictureAnimeLogo.Image = this._animeList[catalogPage].GetImage();
+            lblNextEpisodeDate.Text = @"Next Episode Date: " + formattedDate;
+            pictureAnimeLogo.Image = new Bitmap(this._animeList[catalogPage].GetImagePath());
             
             // Method side effects
             lblVisualHeader.Text = $@"Page {this._navigationHeader+1} of {this._animeList.Count}";

@@ -95,6 +95,7 @@
     <Compile Include="resources\AnimeRegistry.cs" />
     <Compile Include="resources\ConfigManager.cs" />
     <Compile Include="resources\content\Anime.cs" />
+    <Compile Include="resources\content\AnimeSerializationModel.cs" />
     <Compile Include="resources\content\ContentLoader.cs" />
     <Compile Include="resources\utils\HttpClientUtils.cs" />
     <Compile Include="resources\web\AnimeParser.cs" />
@@ -113,6 +114,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="bin\Debug\PFM5.exe.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -138,6 +140,52 @@
     <Content Include="assets\LoadingScreens\loading_starry.png" />
     <Content Include="assets\LoadingScreens\loading_traveller.png" />
     <Content Include="assets\LoadingScreens\loading_yakshas.png" />
+    <Content Include="bin\Debug\assets\anime_posters\1160299.png" />
+    <Content Include="bin\Debug\assets\anime_posters\1462529.png" />
+    <Content Include="bin\Debug\assets\anime_posters\1573469.png" />
+    <Content Include="bin\Debug\assets\anime_posters\1573475.png" />
+    <Content Include="bin\Debug\assets\anime_posters\1614787.png" />
+    <Content Include="bin\Debug\assets\anime_posters\1698489.png" />
+    <Content Include="bin\Debug\assets\anime_posters\1757919.png" />
+    <Content Include="bin\Debug\assets\anime_posters\1766469.png" />
+    <Content Include="bin\Debug\assets\anime_posters\1786702.png" />
+    <Content Include="bin\Debug\assets\anime_posters\1812124.png" />
+    <Content Include="bin\Debug\assets\anime_posters\38636.png" />
+    <Content Include="bin\Debug\assets\LoadingScreens\loading_ayaka.png" />
+    <Content Include="bin\Debug\assets\LoadingScreens\loading_dunno.png" />
+    <Content Include="bin\Debug\assets\LoadingScreens\loading_eula.png" />
+    <Content Include="bin\Debug\assets\LoadingScreens\loading_itto.png" />
+    <Content Include="bin\Debug\assets\LoadingScreens\loading_kazuha.png" />
+    <Content Include="bin\Debug\assets\LoadingScreens\loading_many.png" />
+    <Content Include="bin\Debug\assets\LoadingScreens\loading_miko.png" />
+    <Content Include="bin\Debug\assets\LoadingScreens\loading_starry.png" />
+    <Content Include="bin\Debug\assets\LoadingScreens\loading_traveller.png" />
+    <Content Include="bin\Debug\assets\LoadingScreens\loading_yakshas.png" />
+    <Content Include="bin\Debug\config\AnimeRegistry.json" />
+    <Content Include="bin\Debug\config\Paths.json" />
+    <Content Include="bin\Debug\HtmlAgilityPack.dll" />
+    <Content Include="bin\Debug\HtmlAgilityPack.pdb" />
+    <Content Include="bin\Debug\HtmlAgilityPack.xml" />
+    <Content Include="bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <Content Include="bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml" />
+    <Content Include="bin\Debug\PFM5.exe" />
+    <Content Include="bin\Debug\PFM5.pdb" />
+    <Content Include="bin\Debug\System.Buffers.dll" />
+    <Content Include="bin\Debug\System.Buffers.xml" />
+    <Content Include="bin\Debug\System.Memory.dll" />
+    <Content Include="bin\Debug\System.Memory.xml" />
+    <Content Include="bin\Debug\System.Numerics.Vectors.dll" />
+    <Content Include="bin\Debug\System.Numerics.Vectors.xml" />
+    <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="bin\Debug\System.Text.Encodings.Web.dll" />
+    <Content Include="bin\Debug\System.Text.Encodings.Web.xml" />
+    <Content Include="bin\Debug\System.Text.Json.dll" />
+    <Content Include="bin\Debug\System.Text.Json.xml" />
+    <Content Include="bin\Debug\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\Debug\System.Threading.Tasks.Extensions.xml" />
+    <Content Include="bin\Debug\System.ValueTuple.dll" />
+    <Content Include="bin\Debug\System.ValueTuple.xml" />
     <Content Include="config\Paths.json" />
   </ItemGroup>
   <ItemGroup>

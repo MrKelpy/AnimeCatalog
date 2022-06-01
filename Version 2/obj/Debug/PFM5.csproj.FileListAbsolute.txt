@@ -24,15 +24,6 @@ C:\dev\C#\PFM5\Version 1\obj\Debug\PFM5.QuoteDialog.resources
 C:\dev\C#\PFM5\Version 2\bin\Debug\PFM5.exe.config
 C:\dev\C#\PFM5\Version 2\bin\Debug\PFM5.exe
 C:\dev\C#\PFM5\Version 2\bin\Debug\PFM5.pdb
-C:\dev\C#\PFM5\Version 2\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
-C:\dev\C#\PFM5\Version 2\bin\Debug\System.Buffers.dll
-C:\dev\C#\PFM5\Version 2\bin\Debug\System.Memory.dll
-C:\dev\C#\PFM5\Version 2\bin\Debug\System.Numerics.Vectors.dll
-C:\dev\C#\PFM5\Version 2\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\dev\C#\PFM5\Version 2\bin\Debug\System.Text.Encodings.Web.dll
-C:\dev\C#\PFM5\Version 2\bin\Debug\System.Text.Json.dll
-C:\dev\C#\PFM5\Version 2\bin\Debug\System.Threading.Tasks.Extensions.dll
-C:\dev\C#\PFM5\Version 2\bin\Debug\System.ValueTuple.dll
 C:\dev\C#\PFM5\Version 2\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 C:\dev\C#\PFM5\Version 2\bin\Debug\System.Buffers.xml
 C:\dev\C#\PFM5\Version 2\bin\Debug\System.Memory.xml
@@ -64,7 +55,6 @@ C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_yakshas.png
 C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.forms.AnimeListGUI.resources
 C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.forms.Favourites.resources
 C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.forms.LimitedTextDialog.resources
-C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.dll
 C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.pdb
 C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.xml
 C:\dev\C#\PFM5\Version 2\bin\Debug\config\AnimeRegistry.json

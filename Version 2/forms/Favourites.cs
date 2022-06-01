@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using PFM5.resources.content;
 
@@ -65,9 +66,11 @@ namespace PFM5.forms
             btnPrevious.Enabled = true;
             lblAnimeName.Text = this._favouriteList[catalogPage].GetName();
             lblSynopsis.Text = this._favouriteList[catalogPage].GetSynopsis();
+            string formattedDate = DateTimeOffset
+                .FromUnixTimeSeconds(this._favouriteList[catalogPage].GetNextEpisodeTimestamp()).ToString();
             lblLastEpisodeNumber.Text = @"Last Episode: " + this._favouriteList[catalogPage].GetLastEpisode();
-            lblNextEpisodeDate.Text = @"Next Episode Date: " + this._favouriteList[catalogPage].GetNextEpisodeTimestamp();
-            pictureAnimeLogo.Image = this._favouriteList[catalogPage].GetImage();
+            lblNextEpisodeDate.Text = @"Next Episode Date: " + formattedDate;
+            pictureAnimeLogo.Image = new Bitmap(this._favouriteList[catalogPage].GetImagePath());
             lblQuote.Text = this._favouriteList[catalogPage].GetFavouriteQuote();
             
             // Method side effects

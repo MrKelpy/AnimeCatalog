@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using HtmlAgilityPack;
 
@@ -52,10 +53,14 @@ namespace PFM5.resources.web
                 { "animeLastEpisode", animeLastEpisode },
                 { "animeNextEpisodeTimestamp", animeNextEpisodeTimestamp },
                 { "animePosterUrl", "https:" + animePosterUrl },
+                { "animeImagePath", null },
                 { "animeSynopsis", animeSynopsis },
-                { "animeUrl", animeUrl }
+                { "animeUrl", animeUrl },
+                { "animeIsFavourite", false },
+                { "animeFavouriteQuote", "" }
             };
         
+            GC.Collect();
             return rawDataDict ;
         }
 

@@ -1,21 +1,18 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using PFM5.resources.content;
-
 // ReSharper disable PossibleNullReferenceException
 
 namespace PFM5.resources
 {
-    public class ConfigManager
+    public static class ConfigManager
     /* ConfigManager is a class that manages the different configuration files for the program
      * to function correctly.
      */
     {
         private const string ConfigPath = "./config";
 
-        public string GetPathValue(string pathKey)
+        public static string GetPathValue(string pathKey)
         /* Returns the path value from the Paths.json file.
          *
          * :param pathKey: The key of the path to return.

@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using PFM5.resources.utils;
 using PFM5.resources.web;
+// ReSharper disable RedundantJumpStatement
 
 namespace PFM5.resources.content
 {
@@ -34,7 +33,6 @@ namespace PFM5.resources.content
             HtmlDocument htmlDocument = this._htmlWeb.Load(AnimesUrl);
             HtmlNode trendingAnimes = htmlDocument.DocumentNode.SelectSingleNode(TrendingXPath);
             List<Anime> trendingAnimeList = new List<Anime>();
-            int limit = 0;
 
             foreach (HtmlNode link in trendingAnimes.SelectNodes("//a[@href]"))
             {
@@ -44,12 +42,13 @@ namespace PFM5.resources.content
                 if (AnimeRegistry.CheckInRegistry(link.Attributes["href"].Value)) continue;  
                 
                 // Parse out the anime object from the link. And add an instance of Anime to the final list
-                Dictionary<string, dynamic> result = AnimeParser.GetAnimeInfo(link.Attributes["href"].Value);
-                Anime newAnime = new Anime(result);
-                
-                trendingAnimeList.Add(newAnime);    
-                if (limit == 10) break;
-                limit++;
+                try
+                {
+                    Dictionary<string, dynamic> result = AnimeParser.GetAnimeInfo(link.Attributes["href"].Value);
+                    Anime newAnime = new Anime(result);
+                    trendingAnimeList.Add(newAnime);
+                }
+                catch (Exception) { continue; } // ignored
             }
 
             return trendingAnimeList;
@@ -64,13 +63,17 @@ namespace PFM5.resources.content
          */
         {
             // Builds the path to save the image at
-            Directory.CreateDirectory(new ConfigManager().GetPathValue("anime_posters"));
+            Directory.CreateDirectory(ConfigManager.GetPathValue("anime_posters"));
             
-            string animeImagePath = 
-                Path.Combine(new ConfigManager().GetPathValue("anime_posters"), anime.GetName() + ".png").Replace(" ", "_");
+            string animeImagePath = ConfigManager.GetPathValue("anime_posters") + $"/{anime.GetAnimeId()}" + ".png";
+            animeImagePath = animeImagePath.Replace(" ", "_");
             
             // Downloads the image and saves it to the path
-            await HttpClientUtils.DownloadFileAsync(anime.GetImageUrl(), animeImagePath);
+            if (File.Exists(animeImagePath)) return animeImagePath;
+            
+            try {
+                await HttpClientUtils.DownloadFileAsync(anime.GetImageUrl(), animeImagePath);
+            } catch (Exception) { return animeImagePath; }
 
             return animeImagePath;
         }

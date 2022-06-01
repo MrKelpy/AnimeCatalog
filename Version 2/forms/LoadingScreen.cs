@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.IO;
@@ -72,8 +71,7 @@ namespace PFM5.forms
          */
         {
             // Gather the list of files in the assets directory
-            ConfigManager configManager = new ConfigManager();
-            string loadingImagesPath = configManager.GetPathValue("loadingScreens");
+            string loadingImagesPath = ConfigManager.GetPathValue("loadingScreens");
             string[] loadingImages = Directory.GetFiles(loadingImagesPath);
             
             // Create a bitmap array and add each image to the array after conversion
@@ -98,12 +96,11 @@ namespace PFM5.forms
             // Gets the trending anime contents and loads the poster images into the assets
             List<Anime> animesList = contentLoader.GetTrendingAnimes();
             string[] animePaths = await Task.WhenAll(animesList.Select(anime => contentLoader.LoadPosterImageFor(anime)));
-            Debug.WriteLine(string.Join(", ", animePaths));
 
             // Updates every anime in the registry with the new poster image
             for (int i = 0; i < animesList.Count; i++)
             {
-                animesList[i].SetImage(new Bitmap(animePaths[i]));
+                animesList[i].SetImagePath(animePaths[i]);
                 AnimeRegistry.LoadIntoAnimeRegistry(animesList[i]);
             }
 
