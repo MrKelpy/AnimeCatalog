@@ -41,8 +41,11 @@ namespace PFM5.resources.utils
             // Retrieves the information from the loaded websites
             string animeName = animeCountdownPage.DocumentNode.SelectSingleNode("//h1").InnerText;
             HtmlNodeCollection contentPages = animeCountdownPage.DocumentNode.SelectNodes("//countdown-content-page-item-left-desc");
-            string animeLastEpisode = 'E' + contentPages[contentPages.Count != 2 ? 2 : contentPages.Count - 1]
-                .InnerText.Split(' ')[1];
+            
+            bool episodeNumberSuccess = Int32.TryParse(contentPages[contentPages.Count != 2 ? 2 : contentPages.Count - 1]
+                .InnerText.Split(' ')[1], out int episodeNumber);
+            if (!episodeNumberSuccess) Console.WriteLine();
+            string animeLastEpisode = 'E' + (episodeNumberSuccess ? episodeNumber.ToString() : ": N/A");
             
             string animeNextEpisodeTimestampString = animeCountdownPage.DocumentNode.SelectNodes("//span")[3].Attributes["data-ts"].Value;
             int.TryParse(animeNextEpisodeTimestampString, out int animeNextEpisodeTimestamp);
