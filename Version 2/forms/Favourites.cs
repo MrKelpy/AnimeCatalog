@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using PFM5.resources.content;
+using PFM5.resources.models;
 
 namespace PFM5.forms
 {

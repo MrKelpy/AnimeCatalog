@@ -94,9 +94,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="resources\AnimeRegistry.cs" />
     <Compile Include="resources\ConfigManager.cs" />
-    <Compile Include="resources\content\Anime.cs" />
-    <Compile Include="resources\content\AnimeSerializationModel.cs" />
-    <Compile Include="resources\content\ContentLoader.cs" />
+    <Compile Include="resources\ContentLoader.cs" />
+    <Compile Include="resources\models\Anime.cs" />
+    <Compile Include="resources\models\AnimeSerializationModel.cs" />
     <Compile Include="resources\utils\HttpClientUtils.cs" />
     <Compile Include="resources\web\AnimeParser.cs" />
     <EmbeddedResource Include="forms\AnimeListGUI.resx" />

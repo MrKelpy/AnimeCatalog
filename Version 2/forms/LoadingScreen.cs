@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PFM5.resources;
-using PFM5.resources.content;
+using PFM5.resources.models;
 
 namespace PFM5.forms
 {
@@ -95,6 +95,7 @@ namespace PFM5.forms
 
             // Gets the trending anime contents and loads the poster images into the assets
             List<Anime> animesList = contentLoader.GetTrendingAnimes();
+            
             string[] animePaths = await Task.WhenAll(animesList.Select(anime => contentLoader.LoadPosterImageFor(anime)));
 
             // Updates every anime in the registry with the new poster image

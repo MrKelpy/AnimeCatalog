@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace PFM5.resources.content
+namespace PFM5.resources.models
 {
     [SuppressMessage("ReSharper", "RedundantDefaultMemberInitializer")]
     public class Anime

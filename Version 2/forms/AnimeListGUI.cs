@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using PFM5.resources;
-using PFM5.resources.content;
+using PFM5.resources.models;
 
 // ReSharper disable StringLiteralTypo
 // ReSharper disable IdentifierTypo

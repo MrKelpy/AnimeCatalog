@@ -4,11 +4,12 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using PFM5.resources.models;
 using PFM5.resources.utils;
 using PFM5.resources.web;
 // ReSharper disable RedundantJumpStatement
 
-namespace PFM5.resources.content
+namespace PFM5.resources
 {
     public class ContentLoader
     /* This class is responsible for managing the retrieval of any information related to the
@@ -36,11 +37,10 @@ namespace PFM5.resources.content
 
             foreach (HtmlNode link in trendingAnimes.SelectNodes("//a[@href]"))
             {
-                if (!Regex.IsMatch(link.Attributes["href"].Value, AnimeListingPattern)) continue;
-                
-                // Skip the anime if it's already in the registry
-                if (AnimeRegistry.CheckInRegistry(link.Attributes["href"].Value)) continue;  
-                
+                // If the anime is valid in the registry or the regex doesn't match, skip.
+                if (AnimeRegistry.CheckInRegistry(link.Attributes["href"].Value) ||
+                    !Regex.IsMatch(link.Attributes["href"].Value, AnimeListingPattern)) continue;
+
                 // Parse out the anime object from the link. And add an instance of Anime to the final list
                 try
                 {

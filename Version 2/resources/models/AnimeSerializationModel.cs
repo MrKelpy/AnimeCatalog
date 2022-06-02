@@ -2,7 +2,7 @@ using System.Collections.Generic;
 // ReSharper disable UnusedAutoPropertyAccessor.Local
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace PFM5.resources.content
+namespace PFM5.resources.models
 {
     public class AnimeSerializationModel
     /* This class implements a model to serialize and deserialize the anime data.

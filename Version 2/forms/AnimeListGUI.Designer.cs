@@ -46,24 +46,26 @@ namespace PFM5.forms
             this.btnShowFavourites = new System.Windows.Forms.Button();
             this.addAnimeBtn = new System.Windows.Forms.Button();
             this.btnDeleteAnime = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureAnimeLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureAnimeLogo)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblNextEpisodeDate
             // 
-            this.lblNextEpisodeDate.Location = new System.Drawing.Point(15, 93);
+            this.lblNextEpisodeDate.Location = new System.Drawing.Point(22, 143);
+            this.lblNextEpisodeDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNextEpisodeDate.Name = "lblNextEpisodeDate";
-            this.lblNextEpisodeDate.Size = new System.Drawing.Size(175, 36);
+            this.lblNextEpisodeDate.Size = new System.Drawing.Size(262, 55);
             this.lblNextEpisodeDate.TabIndex = 15;
             this.lblNextEpisodeDate.Text = "NEXT EPISODE DATE";
             this.lblNextEpisodeDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnFavourites
             // 
-            this.btnFavourites.Location = new System.Drawing.Point(246, 278);
+            this.btnFavourites.Location = new System.Drawing.Point(369, 428);
+            this.btnFavourites.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnFavourites.Name = "btnFavourites";
-            this.btnFavourites.Size = new System.Drawing.Size(126, 47);
+            this.btnFavourites.Size = new System.Drawing.Size(189, 72);
             this.btnFavourites.TabIndex = 14;
             this.btnFavourites.Text = "Add To Favourites";
             this.btnFavourites.UseVisualStyleBackColor = true;
@@ -71,18 +73,20 @@ namespace PFM5.forms
             // 
             // lblLastEpisodeNumber
             // 
-            this.lblLastEpisodeNumber.Location = new System.Drawing.Point(15, 25);
+            this.lblLastEpisodeNumber.Location = new System.Drawing.Point(22, 38);
+            this.lblLastEpisodeNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLastEpisodeNumber.Name = "lblLastEpisodeNumber";
-            this.lblLastEpisodeNumber.Size = new System.Drawing.Size(175, 36);
+            this.lblLastEpisodeNumber.Size = new System.Drawing.Size(262, 55);
             this.lblLastEpisodeNumber.TabIndex = 13;
             this.lblLastEpisodeNumber.Text = "LAST EPISODE NUMBER HERE";
             this.lblLastEpisodeNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(583, 278);
+            this.btnNext.Location = new System.Drawing.Point(874, 428);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(141, 47);
+            this.btnNext.Size = new System.Drawing.Size(212, 72);
             this.btnNext.TabIndex = 12;
             this.btnNext.Text = "Next >";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -90,9 +94,10 @@ namespace PFM5.forms
             // 
             // btnPrevious
             // 
-            this.btnPrevious.Location = new System.Drawing.Point(12, 278);
+            this.btnPrevious.Location = new System.Drawing.Point(18, 428);
+            this.btnPrevious.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(141, 47);
+            this.btnPrevious.Size = new System.Drawing.Size(212, 72);
             this.btnPrevious.TabIndex = 11;
             this.btnPrevious.Text = "< Previous";
             this.btnPrevious.UseVisualStyleBackColor = true;
@@ -100,18 +105,20 @@ namespace PFM5.forms
             // 
             // lblSynopsis
             // 
-            this.lblSynopsis.Location = new System.Drawing.Point(242, 50);
+            this.lblSynopsis.Location = new System.Drawing.Point(363, 77);
+            this.lblSynopsis.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSynopsis.Name = "lblSynopsis";
-            this.lblSynopsis.Size = new System.Drawing.Size(248, 158);
+            this.lblSynopsis.Size = new System.Drawing.Size(372, 243);
             this.lblSynopsis.TabIndex = 10;
             this.lblSynopsis.Text = resources.GetString("lblSynopsis.Text");
             this.lblSynopsis.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblAnimeName
             // 
-            this.lblAnimeName.Location = new System.Drawing.Point(242, 22);
+            this.lblAnimeName.Location = new System.Drawing.Point(363, 34);
+            this.lblAnimeName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAnimeName.Name = "lblAnimeName";
-            this.lblAnimeName.Size = new System.Drawing.Size(248, 39);
+            this.lblAnimeName.Size = new System.Drawing.Size(372, 60);
             this.lblAnimeName.TabIndex = 9;
             this.lblAnimeName.Text = "ANIME NAME GOES HERE";
             this.lblAnimeName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -119,9 +126,10 @@ namespace PFM5.forms
             // pictureAnimeLogo
             // 
             this.pictureAnimeLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureAnimeLogo.Location = new System.Drawing.Point(25, 12);
+            this.pictureAnimeLogo.Location = new System.Drawing.Point(38, 18);
+            this.pictureAnimeLogo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureAnimeLogo.Name = "pictureAnimeLogo";
-            this.pictureAnimeLogo.Size = new System.Drawing.Size(211, 207);
+            this.pictureAnimeLogo.Size = new System.Drawing.Size(316, 318);
             this.pictureAnimeLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureAnimeLogo.TabIndex = 8;
             this.pictureAnimeLogo.TabStop = false;
@@ -129,9 +137,10 @@ namespace PFM5.forms
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Location = new System.Drawing.Point(12, 264);
+            this.label1.Location = new System.Drawing.Point(18, 406);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(712, 2);
+            this.label1.Size = new System.Drawing.Size(1068, 3);
             this.label1.TabIndex = 16;
             // 
             // panel1
@@ -139,27 +148,30 @@ namespace PFM5.forms
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.lblNextEpisodeDate);
             this.panel1.Controls.Add(this.lblLastEpisodeNumber);
-            this.panel1.Location = new System.Drawing.Point(496, 50);
+            this.panel1.Location = new System.Drawing.Point(744, 77);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(204, 157);
+            this.panel1.Size = new System.Drawing.Size(305, 240);
             this.panel1.TabIndex = 17;
             // 
             // lblVisualHeader
             // 
             this.lblVisualHeader.BackColor = System.Drawing.Color.Transparent;
             this.lblVisualHeader.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.lblVisualHeader.Location = new System.Drawing.Point(496, 230);
+            this.lblVisualHeader.Location = new System.Drawing.Point(744, 354);
+            this.lblVisualHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblVisualHeader.Name = "lblVisualHeader";
-            this.lblVisualHeader.Size = new System.Drawing.Size(204, 34);
+            this.lblVisualHeader.Size = new System.Drawing.Size(306, 52);
             this.lblVisualHeader.TabIndex = 18;
             this.lblVisualHeader.Text = "0/0";
             this.lblVisualHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnShowFavourites
             // 
-            this.btnShowFavourites.Location = new System.Drawing.Point(378, 278);
+            this.btnShowFavourites.Location = new System.Drawing.Point(567, 428);
+            this.btnShowFavourites.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnShowFavourites.Name = "btnShowFavourites";
-            this.btnShowFavourites.Size = new System.Drawing.Size(130, 47);
+            this.btnShowFavourites.Size = new System.Drawing.Size(195, 72);
             this.btnShowFavourites.TabIndex = 19;
             this.btnShowFavourites.Text = "Show Favourites";
             this.btnShowFavourites.UseVisualStyleBackColor = true;
@@ -167,9 +179,10 @@ namespace PFM5.forms
             // 
             // addAnimeBtn
             // 
-            this.addAnimeBtn.Location = new System.Drawing.Point(25, 227);
+            this.addAnimeBtn.Location = new System.Drawing.Point(38, 349);
+            this.addAnimeBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addAnimeBtn.Name = "addAnimeBtn";
-            this.addAnimeBtn.Size = new System.Drawing.Size(101, 34);
+            this.addAnimeBtn.Size = new System.Drawing.Size(152, 52);
             this.addAnimeBtn.TabIndex = 20;
             this.addAnimeBtn.Text = "New Anime";
             this.addAnimeBtn.UseVisualStyleBackColor = true;
@@ -177,20 +190,21 @@ namespace PFM5.forms
             // 
             // btnDeleteAnime
             // 
-            this.btnDeleteAnime.Location = new System.Drawing.Point(135, 227);
+            this.btnDeleteAnime.Location = new System.Drawing.Point(202, 349);
+            this.btnDeleteAnime.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDeleteAnime.Name = "btnDeleteAnime";
-            this.btnDeleteAnime.Size = new System.Drawing.Size(101, 34);
+            this.btnDeleteAnime.Size = new System.Drawing.Size(152, 52);
             this.btnDeleteAnime.TabIndex = 21;
-            this.btnDeleteAnime.Text = "Delete Anime";
+            this.btnDeleteAnime.Text = "Hide Anime";
             this.btnDeleteAnime.UseVisualStyleBackColor = true;
             this.btnDeleteAnime.Click += new System.EventHandler(this.btnDeleteAnime_Click);
             // 
             // AnimeListGUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(736, 342);
+            this.ClientSize = new System.Drawing.Size(1104, 526);
             this.Controls.Add(this.btnDeleteAnime);
             this.Controls.Add(this.addAnimeBtn);
             this.Controls.Add(this.btnShowFavourites);
@@ -205,10 +219,11 @@ namespace PFM5.forms
             this.Controls.Add(this.pictureAnimeLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Location = new System.Drawing.Point(15, 15);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AnimeListGUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Anime Catalog";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureAnimeLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureAnimeLogo)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
         }

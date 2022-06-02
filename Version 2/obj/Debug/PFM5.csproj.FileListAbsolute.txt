@@ -33,7 +33,6 @@ C:\dev\C#\PFM5\Version 2\bin\Debug\System.Text.Encodings.Web.xml
 C:\dev\C#\PFM5\Version 2\bin\Debug\System.Text.Json.xml
 C:\dev\C#\PFM5\Version 2\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\dev\C#\PFM5\Version 2\bin\Debug\System.ValueTuple.xml
-C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.csprojAssemblyReference.cache
 C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.forms.LoadingScreen.resources
 C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.Properties.Resources.resources
 C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.csproj.GenerateResource.cache
@@ -58,3 +57,5 @@ C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.forms.LimitedTextDialog.resources
 C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.pdb
 C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.xml
 C:\dev\C#\PFM5\Version 2\bin\Debug\config\AnimeRegistry.json
+C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.csproj.AssemblyReference.cache
+C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.csproj.SuggestedBindingRedirects.cache

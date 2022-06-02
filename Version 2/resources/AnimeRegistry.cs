@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using PFM5.resources.content;
+using PFM5.resources.models;
+
 // ReSharper disable PossibleNullReferenceException
 
 namespace PFM5.resources
@@ -41,7 +42,7 @@ namespace PFM5.resources
         
             // Check if the anime is in the registry and if it isn't expired already.
             return animeRegistry.ContainsKey(animeUrl) &&
-                   animeRegistry[animeUrl].GetNextEpisodeTimestamp() < DateTimeOffset.Now.ToUnixTimeSeconds();
+                   animeRegistry[animeUrl].GetNextEpisodeTimestamp() > DateTimeOffset.Now.ToUnixTimeSeconds();
         }
 
         public static Dictionary<string, Anime> ReadRegistry()
