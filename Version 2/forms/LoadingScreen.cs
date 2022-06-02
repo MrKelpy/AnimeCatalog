@@ -14,12 +14,12 @@ namespace PFM5.forms
     public partial class LoadingScreen : Form
     {
         // Dynamic loading of images :D
-        private readonly Bitmap[] _loadingImages;
+        private readonly List<Bitmap> _loadingImages = new List<Bitmap>();
         
         public LoadingScreen()
         {
             InitializeComponent();
-            this._loadingImages = this.BuildLoadingImagesArray();
+            this.BuildLoadingImagesList();
             this.HandleStartup();
         }
 
@@ -39,7 +39,7 @@ namespace PFM5.forms
          * :return void:
          */
         {
-            var randomLoadingImage = this._loadingImages[new Random().Next(this._loadingImages.Length)];
+            var randomLoadingImage = this._loadingImages[new Random().Next(this._loadingImages.Count)];
             this.BackgroundImage = randomLoadingImage;
         }
 
@@ -63,24 +63,20 @@ namespace PFM5.forms
             Cursor.Current = Cursors.Arrow;
         }
 
-        private Bitmap[] BuildLoadingImagesArray()
-        /* Iterates over the assets directory and builds a Bitmap array containing all of the
+        private void BuildLoadingImagesList()
+        /* Iterates over the assets directory and builds the Bitmap list containing all of the
          * loading images within.
          *
-         * :return Bitmap[]: The Bitmap array of loading images.
+         * :return void:
          */
         {
             // Gather the list of files in the assets directory
             string loadingImagesPath = ConfigManager.GetPathValue("loadingScreens");
             string[] loadingImages = Directory.GetFiles(loadingImagesPath);
             
-            // Create a bitmap array and add each image to the array after conversion
-            Bitmap[] loadingImagesArray = new Bitmap[loadingImages.Length];
-            
-            for (int i = 0; i < loadingImages.Length; i++)
-                loadingImagesArray[i] = new Bitmap(loadingImages[i]);
-
-            return loadingImagesArray;
+            // Add all of the images into the bitmap list
+            foreach (var loadingScreen in loadingImages)
+                this._loadingImages.Add(new Bitmap(loadingScreen));
         }
         
         private async void LoadingScreen_Load(object sender, EventArgs e)

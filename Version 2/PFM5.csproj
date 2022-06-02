@@ -158,9 +158,13 @@
     <Content Include="bin\Debug\assets\LoadingScreens\loading_kazuha.png" />
     <Content Include="bin\Debug\assets\LoadingScreens\loading_many.png" />
     <Content Include="bin\Debug\assets\LoadingScreens\loading_miko.png" />
+    <Content Include="bin\Debug\assets\LoadingScreens\loading_miko_2.png" />
     <Content Include="bin\Debug\assets\LoadingScreens\loading_starry.png" />
     <Content Include="bin\Debug\assets\LoadingScreens\loading_traveller.png" />
+    <Content Include="bin\Debug\assets\LoadingScreens\loading_xiao.png" />
+    <Content Include="bin\Debug\assets\LoadingScreens\loading_xiao_2.png" />
     <Content Include="bin\Debug\assets\LoadingScreens\loading_yakshas.png" />
+    <Content Include="bin\Debug\assets\LoadingScreens\loading_yelan.png" />
     <Content Include="bin\Debug\config\AnimeRegistry.json" />
     <Content Include="bin\Debug\config\Paths.json" />
     <Content Include="bin\Debug\HtmlAgilityPack.dll" />

@@ -42,7 +42,6 @@ C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.exe
 C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.pdb
 C:\dev\C#\PFM5\Version 2\bin\Debug\config\Paths.json
 C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_ayaka.png
-C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_dunno.png
 C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_eula.png
 C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_itto.png
 C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_kazuha.png
@@ -58,3 +57,7 @@ C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.pdb
 C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.xml
 C:\dev\C#\PFM5\Version 2\bin\Debug\config\AnimeRegistry.json
 C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.csprojAssemblyReference.cache
+C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_yelan.png
+C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_miko_2.png
+C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_xiao.png
+C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_xiao_2.png
