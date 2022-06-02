@@ -22,7 +22,7 @@ namespace PFM5.resources.utils
             if (additionalSynopsis != null) 
                 synopsis += $" {additionalSynopsis}";
 
-            return synopsis;
+            return synopsis.Length <= 495 ? synopsis : synopsis.Substring(0, 495) + " (...)";
         }
         
         public static Dictionary<string, dynamic> GetAnimeInfo(string animeUrl)

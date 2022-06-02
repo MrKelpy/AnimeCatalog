@@ -45,7 +45,7 @@ namespace PFM5.forms
             this.lblVisualHeader = new System.Windows.Forms.Label();
             this.btnShowFavourites = new System.Windows.Forms.Button();
             this.addAnimeBtn = new System.Windows.Forms.Button();
-            this.btnDeleteAnime = new System.Windows.Forms.Button();
+            this.btnHideAnime = new System.Windows.Forms.Button();
             this.lblNotFound = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAnimeLogo)).BeginInit();
             this.panel1.SuspendLayout();
@@ -62,7 +62,7 @@ namespace PFM5.forms
             // 
             // btnFavourites
             // 
-            this.btnFavourites.Location = new System.Drawing.Point(246, 278);
+            this.btnFavourites.Location = new System.Drawing.Point(242, 278);
             this.btnFavourites.Name = "btnFavourites";
             this.btnFavourites.Size = new System.Drawing.Size(126, 47);
             this.btnFavourites.TabIndex = 14;
@@ -101,18 +101,18 @@ namespace PFM5.forms
             // 
             // lblSynopsis
             // 
-            this.lblSynopsis.Location = new System.Drawing.Point(242, 50);
+            this.lblSynopsis.Location = new System.Drawing.Point(242, 61);
             this.lblSynopsis.Name = "lblSynopsis";
             this.lblSynopsis.Size = new System.Drawing.Size(248, 158);
             this.lblSynopsis.TabIndex = 10;
             this.lblSynopsis.Text = resources.GetString("lblSynopsis.Text");
-            this.lblSynopsis.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblSynopsis.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblAnimeName
             // 
-            this.lblAnimeName.Location = new System.Drawing.Point(242, 22);
+            this.lblAnimeName.Location = new System.Drawing.Point(242, 12);
             this.lblAnimeName.Name = "lblAnimeName";
-            this.lblAnimeName.Size = new System.Drawing.Size(248, 39);
+            this.lblAnimeName.Size = new System.Drawing.Size(248, 49);
             this.lblAnimeName.TabIndex = 9;
             this.lblAnimeName.Text = "ANIME NAME GOES HERE";
             this.lblAnimeName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -158,7 +158,7 @@ namespace PFM5.forms
             // 
             // btnShowFavourites
             // 
-            this.btnShowFavourites.Location = new System.Drawing.Point(378, 278);
+            this.btnShowFavourites.Location = new System.Drawing.Point(374, 278);
             this.btnShowFavourites.Name = "btnShowFavourites";
             this.btnShowFavourites.Size = new System.Drawing.Size(130, 47);
             this.btnShowFavourites.TabIndex = 19;
@@ -172,19 +172,19 @@ namespace PFM5.forms
             this.addAnimeBtn.Name = "addAnimeBtn";
             this.addAnimeBtn.Size = new System.Drawing.Size(101, 34);
             this.addAnimeBtn.TabIndex = 20;
-            this.addAnimeBtn.Text = "New Anime";
+            this.addAnimeBtn.Text = "New/Find Anime";
             this.addAnimeBtn.UseVisualStyleBackColor = true;
             this.addAnimeBtn.Click += new System.EventHandler(this.addAnimeBtn_Click);
             // 
-            // btnDeleteAnime
+            // btnHideAnime
             // 
-            this.btnDeleteAnime.Location = new System.Drawing.Point(135, 227);
-            this.btnDeleteAnime.Name = "btnDeleteAnime";
-            this.btnDeleteAnime.Size = new System.Drawing.Size(101, 34);
-            this.btnDeleteAnime.TabIndex = 21;
-            this.btnDeleteAnime.Text = "Hide Anime";
-            this.btnDeleteAnime.UseVisualStyleBackColor = true;
-            this.btnDeleteAnime.Click += new System.EventHandler(this.btnDeleteAnime_Click);
+            this.btnHideAnime.Location = new System.Drawing.Point(135, 227);
+            this.btnHideAnime.Name = "btnHideAnime";
+            this.btnHideAnime.Size = new System.Drawing.Size(101, 34);
+            this.btnHideAnime.TabIndex = 21;
+            this.btnHideAnime.Text = "Remove Anime";
+            this.btnHideAnime.UseVisualStyleBackColor = true;
+            this.btnHideAnime.Click += new System.EventHandler(this.btnHideAnime_Click);
             // 
             // lblNotFound
             // 
@@ -203,7 +203,7 @@ namespace PFM5.forms
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(736, 358);
             this.Controls.Add(this.lblNotFound);
-            this.Controls.Add(this.btnDeleteAnime);
+            this.Controls.Add(this.btnHideAnime);
             this.Controls.Add(this.addAnimeBtn);
             this.Controls.Add(this.btnShowFavourites);
             this.Controls.Add(this.lblVisualHeader);
@@ -227,7 +227,7 @@ namespace PFM5.forms
 
         private System.Windows.Forms.Label lblNotFound;
 
-        private System.Windows.Forms.Button btnDeleteAnime;
+        private System.Windows.Forms.Button btnHideAnime;
 
         private System.Windows.Forms.Button addAnimeBtn;
 

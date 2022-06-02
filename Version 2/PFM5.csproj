@@ -132,7 +132,6 @@
   <ItemGroup>
     <Content Include="assets\LoadingScreens\loading_eula.png" />
     <Content Include="assets\LoadingScreens\loading_ayaka.png" />
-    <Content Include="assets\LoadingScreens\loading_dunno.png" />
     <Content Include="assets\LoadingScreens\loading_itto.png" />
     <Content Include="assets\LoadingScreens\loading_kazuha.png" />
     <Content Include="assets\LoadingScreens\loading_many.png" />

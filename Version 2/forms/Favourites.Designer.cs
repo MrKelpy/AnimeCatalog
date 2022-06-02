@@ -108,14 +108,14 @@ namespace PFM5.forms
             this.lblSynopsis.Size = new System.Drawing.Size(248, 158);
             this.lblSynopsis.TabIndex = 21;
             this.lblSynopsis.Text = resources.GetString("lblSynopsis.Text");
-            this.lblSynopsis.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblSynopsis.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblSynopsis.Visible = false;
             // 
             // lblAnimeName
             // 
-            this.lblAnimeName.Location = new System.Drawing.Point(236, 17);
+            this.lblAnimeName.Location = new System.Drawing.Point(236, 9);
             this.lblAnimeName.Name = "lblAnimeName";
-            this.lblAnimeName.Size = new System.Drawing.Size(248, 39);
+            this.lblAnimeName.Size = new System.Drawing.Size(248, 47);
             this.lblAnimeName.TabIndex = 20;
             this.lblAnimeName.Text = "ANIME NAME GOES HERE";
             this.lblAnimeName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

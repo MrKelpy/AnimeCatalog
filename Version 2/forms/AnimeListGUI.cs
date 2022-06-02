@@ -29,7 +29,7 @@ namespace PFM5.forms
         }
 
         private void ShowCatalogPage(int catalogPage)
-        /* Returns the information from the anime list array for a given index
+        /* Returns the information from the anime list for a given index
          * and displays it correctly in the GUI catalog page.
          * 
          * This function will also update the visual header, and change the text in the favourites button
@@ -133,12 +133,14 @@ namespace PFM5.forms
         {
             LimitedTextDialog animeNameDialog = new LimitedTextDialog(60, "Enter Anime Name");
             animeNameDialog.ShowDialog();
-            this.AddAnime(animeNameDialog.TextReturned);
+            
+            if (animeNameDialog.DialogResult == DialogResult.OK)
+                this.AddAnime(animeNameDialog.TextReturned);
         }
 
-        private void btnDeleteAnime_Click(object sender, EventArgs e)
-        /* Removes the current anime from the animes list array and updates the page.
-         * The new page will be either the current index in the array, or the one before it, if the current page is the last.
+        private void btnHideAnime_Click(object sender, EventArgs e)
+        /* Removes the current anime from the animes list list and updates the page.
+         * The new page will be either the current index in the list, or the one before it, if the current page is the last.
          * :return void:
          */
         {
@@ -152,18 +154,29 @@ namespace PFM5.forms
             
             // As a precaution, lock the delete anime button if there's only one anime left.
             if (this._animeList.Count == 1)
-                btnDeleteAnime.Enabled = false;
+                btnHideAnime.Enabled = false;
         }
 
         private async void AddAnime(string newAnime)
-        /* Adds an anime to the current anime list array, and updates the Anime Registry
+        /* Adds an anime to the current anime list list, and updates the Anime Registry
          * with the new anime.
          */
         {
+            
+            // If the anime is already in the list, jump to its page.
+            if (this._animeList.Any(x => String.Equals(x.GetName(), newAnime, StringComparison.CurrentCultureIgnoreCase)))
+            {
+                Anime selectedAnime = this._animeList.Where(x 
+                    => String.Equals(x.GetName(), newAnime, StringComparison.CurrentCultureIgnoreCase)).ToList()[0];
+                this._navigationHeader = this._animeList.IndexOf(selectedAnime);
+                this.ShowCatalogPage(_navigationHeader);
+                return;
+            }
+                
             // Loads up the content loader and searches for a new anime
             ContentLoader contentLoader = new ContentLoader();
             Anime anime = contentLoader.SearchForAnime(newAnime);
-
+                
             if (anime != null)
             {
                 // If the anime is found, load the poster image for it and set it into the anime object.
@@ -178,13 +191,21 @@ namespace PFM5.forms
                 this._navigationHeader = this._animeList.Count - 1;
                 this.ShowCatalogPage(this._navigationHeader);
             }
-            else {
+            else {  
                 lblNotFound.Text = $@"Couldn't find anime: '{newAnime}'";
                 lblNotFound.Visible = true;
             }
         }
 
-        private void RemoveAnime(Anime animeToRemove) => this._animeList.Remove(animeToRemove);
-        // Removes an Anime object from the anime list array.
+        private void RemoveAnime(Anime animeToRemove)
+        /* Removes an anime from the current anime list, and updates the Anime Registry
+         * to have it also removed from there.
+         * 
+         * :return void
+         */
+        {
+            this._animeList.Remove(animeToRemove);
+            AnimeRegistry.RemoveFromRegistry(animeToRemove.GetName());
+        }
     }
 }
