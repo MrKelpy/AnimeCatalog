@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace PFM5.resources.models
 {
     [SuppressMessage("ReSharper", "RedundantDefaultMemberInitializer")]
-    public class Anime
+    public class Anime : IComparable<Anime>
     /* This class implements a convenient way to store and access data
      * for a given anime.
      */
@@ -53,6 +54,8 @@ namespace PFM5.resources.models
         public void SetImagePath(string image) { this._imagePath = image; }
         
         // Class methods
+        public override string ToString() => this.GetName();
+        public int CompareTo(Anime other) => String.Compare(this.GetName(), other.GetName(), StringComparison.Ordinal);
 
         public AnimeSerializationModel ToSerializationModel()
         /* Returns a serializable AnimeSerializationModel with the attribute context

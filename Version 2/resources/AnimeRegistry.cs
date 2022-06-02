@@ -61,5 +61,27 @@ namespace PFM5.resources
 
             } catch (ArgumentNullException) { return new Dictionary<string, Anime>(); }
         }
+
+        public static Anime RemoveFromRegistry(string animeUrl)
+        /* Removes an anime from the AnimeRegistry.json file and returns
+         * the Anime instance that was removed.
+         * 
+         * :return Anime: The Anime instance that was removed from the registry.
+         */
+        {
+            Dictionary<string, Anime> animeRegistry = AnimeRegistry.ReadRegistry();
+            Dictionary<string, Anime> backupRegistry = animeRegistry.ToDictionary(x => x.Key,
+                y => y.Value);
+            
+            if (!animeRegistry.Remove(animeUrl))  // Remove the anime from the registry, return null if failed.
+                return null;
+            
+            // Serializes the anime back into a json string and writes it to the file.
+            string jsonSerializedString = JsonSerializer.Serialize(animeRegistry.ToDictionary(x=> x.Key,
+                y=> y.Value.ToSerializationModel()));
+            
+            File.WriteAllText(ConfigManager.GetPathValue("anime_registry"), jsonSerializedString);
+            return backupRegistry[animeUrl];
+        }
     }
 }

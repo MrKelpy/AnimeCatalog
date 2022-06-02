@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 // ReSharper disable VirtualMemberCallInConstructor
 
-namespace PFM5
+namespace PFM5.forms
 {
     public partial class LimitedTextDialog : Form
     {

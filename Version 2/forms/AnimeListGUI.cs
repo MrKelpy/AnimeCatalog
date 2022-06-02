@@ -22,7 +22,10 @@ namespace PFM5.forms
             InitializeComponent();
             this.CenterToScreen();
             this._animeList = AnimeRegistry.ReadRegistry().Values.ToList();
+            this._animeList.Sort();
             this.ShowCatalogPage(0);  // Displays the first page of the catalog
+            this.ShowInTaskbar = true;
+            this.Show();
         }
 
         private void ShowCatalogPage(int catalogPage)
@@ -47,6 +50,7 @@ namespace PFM5.forms
             // Method side effects
             lblVisualHeader.Text = $@"Page {this._navigationHeader+1} of {this._animeList.Count}";
             btnFavourites.Text = this._animeList[catalogPage].GetFavouriteBool() ? "Remove from Favourites" : "Add to Favourites";
+            lblNotFound.Visible = false;
         }
 
         private List<Anime> BuildFavouritesArray()
@@ -96,12 +100,19 @@ namespace PFM5.forms
         /* Adds or removes the current anime from the favourites list.
          * This will also update the text of the button to reflect the new state, by updating
          * the whole page through ShowCatalogPage, and will clear the favourite quote.
+         * This also affects the Anime Registry.
          *
          * :return void:
          */
         {
+            // Update the buffer
             this._animeList[this._navigationHeader].ToggleFavourite();
             this.ShowCatalogPage(this._navigationHeader);
+
+            // Update the registry
+            Anime anime = AnimeRegistry.RemoveFromRegistry(this._animeList[this._navigationHeader].GetAnimeUrl());
+            anime.ToggleFavourite();
+            AnimeRegistry.LoadIntoAnimeRegistry(anime);
         }
     
         private void btnShowFavourites_Click(object sender, EventArgs e)
@@ -116,12 +127,14 @@ namespace PFM5.forms
         }
 
         private void addAnimeBtn_Click(object sender, EventArgs e)
-        /* Brings up four Limited Text Dialogs in succession to allow the user to add in
-         * a new anime entry, and adds their results into the array.
-         *
+        /* Brings up a Limited Text Dialog for the user to enter the name of the anime to add.
          * :return None:
          */
-        { }
+        {
+            LimitedTextDialog animeNameDialog = new LimitedTextDialog(60, "Enter Anime Name");
+            animeNameDialog.ShowDialog();
+            this.AddAnime(animeNameDialog.TextReturned);
+        }
 
         private void btnDeleteAnime_Click(object sender, EventArgs e)
         /* Removes the current anime from the animes list array and updates the page.
@@ -141,9 +154,35 @@ namespace PFM5.forms
             if (this._animeList.Count == 1)
                 btnDeleteAnime.Enabled = false;
         }
-        
-        private void AddAnime(Anime newAnime) => this._animeList.Add(newAnime);
-        // Adds a new Anime object to the anime list array.
+
+        private async void AddAnime(string newAnime)
+        /* Adds an anime to the current anime list array, and updates the Anime Registry
+         * with the new anime.
+         */
+        {
+            // Loads up the content loader and searches for a new anime
+            ContentLoader contentLoader = new ContentLoader();
+            Anime anime = contentLoader.SearchForAnime(newAnime);
+
+            if (anime != null)
+            {
+                // If the anime is found, load the poster image for it and set it into the anime object.
+                string animeImagePath = await contentLoader.LoadPosterImageFor(anime);
+                anime.SetImagePath(animeImagePath);
+
+                // Load the anime into the registry and the current buffer
+                AnimeRegistry.LoadIntoAnimeRegistry(anime);
+                this._animeList.Add(anime);
+                
+                // Update the page
+                this._navigationHeader = this._animeList.Count - 1;
+                this.ShowCatalogPage(this._navigationHeader);
+            }
+            else {
+                lblNotFound.Text = $@"Couldn't find anime: '{newAnime}'";
+                lblNotFound.Visible = true;
+            }
+        }
 
         private void RemoveAnime(Anime animeToRemove) => this._animeList.Remove(animeToRemove);
         // Removes an Anime object from the anime list array.

@@ -97,8 +97,8 @@
     <Compile Include="resources\ContentLoader.cs" />
     <Compile Include="resources\models\Anime.cs" />
     <Compile Include="resources\models\AnimeSerializationModel.cs" />
+    <Compile Include="resources\utils\AnimeParser.cs" />
     <Compile Include="resources\utils\HttpClientUtils.cs" />
-    <Compile Include="resources\web\AnimeParser.cs" />
     <EmbeddedResource Include="forms\AnimeListGUI.resx" />
     <EmbeddedResource Include="forms\Favourites.resx" />
     <EmbeddedResource Include="forms\LimitedTextDialog.resx" />

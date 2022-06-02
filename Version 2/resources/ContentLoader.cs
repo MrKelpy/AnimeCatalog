@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using HtmlAgilityPack;
 using PFM5.resources.models;
 using PFM5.resources.utils;
-using PFM5.resources.web;
 // ReSharper disable RedundantJumpStatement
 
 namespace PFM5.resources
@@ -53,6 +52,33 @@ namespace PFM5.resources
 
             return trendingAnimeList;
         }
+
+        public Anime SearchForAnime(string animeName, int recursionIndex = 0)
+        /* Search for an anime by name and return the first result. If the first result errors,
+         * tries the second result, and so on. If the recursion doesn't work, return null.
+         *
+         * :param recursionIndex: The index of the current recursion.
+         * :param string animeName: The name of the anime to search for.
+         * :return Anime: The first result of the search.
+         */
+        {
+            string searchUrl = $"https://animecountdown.com/search?q={animeName.Replace(" ", "-")}";
+            HtmlDocument htmlDocument = this._htmlWeb.Load(searchUrl);
+            HtmlNode firstResult = htmlDocument.DocumentNode.SelectNodes("//a[@href]")[7 + recursionIndex];
+
+            // Makes sure that the anime exists in the HTML document.
+            if (firstResult == null || !Regex.IsMatch(firstResult.Attributes["href"].Value, AnimeListingPattern)) 
+                return null;
+            
+            // Parse out the anime object from the link.
+            try
+            {
+                Dictionary<string, dynamic> result = AnimeParser.GetAnimeInfo(firstResult.Attributes["href"].Value);
+                return new Anime(result);
+            }
+            catch (Exception) { return this.SearchForAnime(animeName, recursionIndex + 1); }
+        }
+
 
         public async Task<string> LoadPosterImageFor(Anime anime)
         /* Asynchronously downloads the Poster Image for a given anime and saves

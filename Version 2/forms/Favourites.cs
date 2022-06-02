@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using PFM5.resources;
 using PFM5.resources.models;
 
 namespace PFM5.forms
@@ -119,8 +120,14 @@ namespace PFM5.forms
             int currentCharacterIndex = this._caller._animeList.FindIndex(
                 x => x.GetName() == this._favouriteList[this._navigationHeader].GetName());
             
+            // Update the buffer anime list
             this._caller._animeList[currentCharacterIndex].SetFavouriteQuote(quoteDialog.TextReturned);
             this._favouriteList[_navigationHeader].SetFavouriteQuote(quoteDialog.TextReturned);
+            
+            // Update the registry
+            Anime anime = AnimeRegistry.RemoveFromRegistry(this._caller._animeList[currentCharacterIndex].GetAnimeUrl());
+            anime.SetFavouriteQuote(quoteDialog.TextReturned);
+            AnimeRegistry.LoadIntoAnimeRegistry(anime);
         }
         
         private void btnBack_Click(object sender, EventArgs e) => this.Close();
