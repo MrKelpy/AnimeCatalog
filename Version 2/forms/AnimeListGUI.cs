@@ -39,17 +39,17 @@ namespace PFM5.forms
          */
         {
             // Method primary logic
-            lblAnimeName.Text = this._animeList[catalogPage].GetName();
-            lblSynopsis.Text = this._animeList[catalogPage].GetSynopsis();
+            lblAnimeName.Text = this._animeList[catalogPage].Name;
+            lblSynopsis.Text = this._animeList[catalogPage].Synopsis;
             string formattedDate = DateTimeOffset
-                .FromUnixTimeSeconds(this._animeList[catalogPage].GetNextEpisodeTimestamp()).ToString();
-            lblLastEpisodeNumber.Text = @"Last Episode: " + this._animeList[catalogPage].GetLastEpisode();
+                .FromUnixTimeSeconds(this._animeList[catalogPage].NextEpisodeTimestamp).ToString();
+            lblLastEpisodeNumber.Text = @"Last Episode: " + this._animeList[catalogPage].LastEpisode;
             lblNextEpisodeDate.Text = @"Next Episode Date: " + formattedDate;
-            pictureAnimeLogo.Image = new Bitmap(this._animeList[catalogPage].GetImagePath());
+            pictureAnimeLogo.Image = new Bitmap(this._animeList[catalogPage].ImagePath);
             
             // Method side effects
             lblVisualHeader.Text = $@"Page {this._navigationHeader+1} of {this._animeList.Count}";
-            btnFavourites.Text = this._animeList[catalogPage].GetFavouriteBool() ? "Remove from Favourites" : "Add to Favourites";
+            btnFavourites.Text = this._animeList[catalogPage].IsFavourite ? "Remove from Favourites" : "Add to Favourites";
             lblNotFound.Visible = false;
         }
 
@@ -62,7 +62,7 @@ namespace PFM5.forms
             
             for (byte i = 0; i < this._animeList.Count; i++)
             {
-                if (!this._animeList[i].GetFavouriteBool()) continue;
+                if (!this._animeList[i].IsFavourite) continue;
                 favouritesList.Add(this._animeList[i]);
             }
             
@@ -110,7 +110,7 @@ namespace PFM5.forms
             this.ShowCatalogPage(this._navigationHeader);
 
             // Update the registry
-            Anime anime = AnimeRegistry.RemoveFromRegistry(this._animeList[this._navigationHeader].GetAnimeUrl());
+            Anime anime = AnimeRegistry.RemoveFromRegistry(this._animeList[this._navigationHeader].AnimeUrl);
             anime.ToggleFavourite();
             AnimeRegistry.LoadIntoAnimeRegistry(anime);
         }
@@ -164,10 +164,10 @@ namespace PFM5.forms
         {
             
             // If the anime is already in the list, jump to its page.
-            if (this._animeList.Any(x => String.Equals(x.GetName(), newAnime, StringComparison.CurrentCultureIgnoreCase)))
+            if (this._animeList.Any(x => String.Equals(x.Name, newAnime, StringComparison.CurrentCultureIgnoreCase)))
             {
                 Anime selectedAnime = this._animeList.Where(x 
-                    => String.Equals(x.GetName(), newAnime, StringComparison.CurrentCultureIgnoreCase)).ToList()[0];
+                    => String.Equals(x.Name, newAnime, StringComparison.CurrentCultureIgnoreCase)).ToList()[0];
                 this._navigationHeader = this._animeList.IndexOf(selectedAnime);
                 this.ShowCatalogPage(_navigationHeader);
                 return;
@@ -181,7 +181,7 @@ namespace PFM5.forms
             {
                 // If the anime is found, load the poster image for it and set it into the anime object.
                 string animeImagePath = await contentLoader.LoadPosterImageFor(anime);
-                anime.SetImagePath(animeImagePath);
+                anime.ImagePath = animeImagePath;
 
                 // Load the anime into the registry and the current buffer
                 AnimeRegistry.LoadIntoAnimeRegistry(anime);
@@ -205,7 +205,7 @@ namespace PFM5.forms
          */
         {
             this._animeList.Remove(animeToRemove);
-            AnimeRegistry.RemoveFromRegistry(animeToRemove.GetName());
+            AnimeRegistry.RemoveFromRegistry(animeToRemove.Name);
         }
     }
 }

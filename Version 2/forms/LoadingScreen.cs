@@ -97,7 +97,7 @@ namespace PFM5.forms
             // Updates every anime in the registry with the new poster image
             for (int i = 0; i < animesList.Count; i++)
             {
-                animesList[i].SetImagePath(animePaths[i]);
+                animesList[i].ImagePath = animePaths[i];
                 AnimeRegistry.LoadIntoAnimeRegistry(animesList[i]);
             }
 

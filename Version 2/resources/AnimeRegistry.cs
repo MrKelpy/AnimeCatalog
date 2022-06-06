@@ -26,7 +26,7 @@ namespace PFM5.resources
             // Deserialize the json string into a dictionary and update it
             var animeRegistry = AnimeRegistry.ReadRegistry().ToDictionary(x=> x.Key,
                 y=> y.Value.ToSerializationModel());
-            animeRegistry[anime.GetAnimeUrl()] = anime.ToSerializationModel();
+            animeRegistry[anime.AnimeUrl] = anime.ToSerializationModel();
             
             // Serialize the dictionary into a json string and write it to the file.
             string jsonSerializedString = JsonSerializer.Serialize(animeRegistry);
@@ -42,7 +42,7 @@ namespace PFM5.resources
         
             // Check if the anime is in the registry and if it isn't expired already.
             return animeRegistry.ContainsKey(animeUrl) &&
-                   animeRegistry[animeUrl].GetNextEpisodeTimestamp() > DateTimeOffset.Now.ToUnixTimeSeconds();
+                   animeRegistry[animeUrl].NextEpisodeTimestamp > DateTimeOffset.Now.ToUnixTimeSeconds();
         }
 
         public static Dictionary<string, Anime> ReadRegistry()

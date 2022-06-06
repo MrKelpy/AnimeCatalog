@@ -91,14 +91,14 @@ namespace PFM5.resources
             // Builds the path to save the image at
             Directory.CreateDirectory(ConfigManager.GetPathValue("anime_posters"));
             
-            string animeImagePath = ConfigManager.GetPathValue("anime_posters") + $"/{anime.GetAnimeId()}" + ".png";
+            string animeImagePath = ConfigManager.GetPathValue("anime_posters") + $"/{anime.Id}" + ".png";
             animeImagePath = animeImagePath.Replace(" ", "_");
             
             // Downloads the image and saves it to the path
             if (File.Exists(animeImagePath)) return animeImagePath;
             
             try {
-                await HttpClientUtils.DownloadFileAsync(anime.GetImageUrl(), animeImagePath);
+                await HttpClientUtils.DownloadFileAsync(anime.ImageUrl, animeImagePath);
             } catch (Exception) { return animeImagePath; }
 
             return animeImagePath;

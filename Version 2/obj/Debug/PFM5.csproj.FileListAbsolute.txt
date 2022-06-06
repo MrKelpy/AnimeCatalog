@@ -56,8 +56,9 @@ C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.forms.LimitedTextDialog.resources
 C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.pdb
 C:\dev\C#\PFM5\Version 2\bin\Debug\HtmlAgilityPack.xml
 C:\dev\C#\PFM5\Version 2\bin\Debug\config\AnimeRegistry.json
-C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.csprojAssemblyReference.cache
 C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_yelan.png
 C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_miko_2.png
 C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_xiao.png
 C:\dev\C#\PFM5\Version 2\bin\Debug\assets\LoadingScreens\loading_xiao_2.png
+C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.csproj.AssemblyReference.cache
+C:\dev\C#\PFM5\Version 2\obj\Debug\PFM5.csproj.SuggestedBindingRedirects.cache

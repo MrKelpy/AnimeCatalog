@@ -65,14 +65,14 @@ namespace PFM5.forms
             // Method primary logic
             btnNext.Enabled = true;
             btnPrevious.Enabled = true;
-            lblAnimeName.Text = this._favouriteList[catalogPage].GetName();
-            lblSynopsis.Text = this._favouriteList[catalogPage].GetSynopsis();
+            lblAnimeName.Text = this._favouriteList[catalogPage].Name;
+            lblSynopsis.Text = this._favouriteList[catalogPage].Synopsis;
             string formattedDate = DateTimeOffset
-                .FromUnixTimeSeconds(this._favouriteList[catalogPage].GetNextEpisodeTimestamp()).ToString();
-            lblLastEpisodeNumber.Text = @"Last Episode: " + this._favouriteList[catalogPage].GetLastEpisode();
+                .FromUnixTimeSeconds(this._favouriteList[catalogPage].NextEpisodeTimestamp).ToString();
+            lblLastEpisodeNumber.Text = @"Last Episode: " + this._favouriteList[catalogPage].LastEpisode;
             lblNextEpisodeDate.Text = @"Next Episode Date: " + formattedDate;
-            pictureAnimeLogo.Image = new Bitmap(this._favouriteList[catalogPage].GetImagePath());
-            lblQuote.Text = this._favouriteList[catalogPage].GetFavouriteQuote();
+            pictureAnimeLogo.Image = new Bitmap(this._favouriteList[catalogPage].ImagePath);
+            lblQuote.Text = this._favouriteList[catalogPage].FavouriteQuote;
             
             // Method side effects
             lblVisualHeader.Text = $@"Page {this._navigationHeader+1} of {this._favouriteList.Count}";
@@ -110,7 +110,7 @@ namespace PFM5.forms
          */
         {
             LimitedTextDialog quoteDialog = 
-                new LimitedTextDialog(60, initialText:_favouriteList[this._navigationHeader].GetFavouriteQuote());
+                new LimitedTextDialog(60, initialText:_favouriteList[this._navigationHeader].FavouriteQuote);
             quoteDialog.ShowDialog();
 
             if (quoteDialog.DialogResult != DialogResult.OK) return;
@@ -118,15 +118,15 @@ namespace PFM5.forms
             
             // Find and modify the anime list array with the new quote on the AnimeListGUI form.
             int currentCharacterIndex = this._caller._animeList.FindIndex(
-                x => x.GetName() == this._favouriteList[this._navigationHeader].GetName());
+                x => x.Name == this._favouriteList[this._navigationHeader].Name);
             
             // Update the buffer anime list
-            this._caller._animeList[currentCharacterIndex].SetFavouriteQuote(quoteDialog.TextReturned);
-            this._favouriteList[_navigationHeader].SetFavouriteQuote(quoteDialog.TextReturned);
+            this._caller._animeList[currentCharacterIndex].FavouriteQuote = quoteDialog.TextReturned;
+            this._favouriteList[_navigationHeader].FavouriteQuote = quoteDialog.TextReturned;
             
             // Update the registry
-            Anime anime = AnimeRegistry.RemoveFromRegistry(this._caller._animeList[currentCharacterIndex].GetAnimeUrl());
-            anime.SetFavouriteQuote(quoteDialog.TextReturned);
+            Anime anime = AnimeRegistry.RemoveFromRegistry(this._caller._animeList[currentCharacterIndex].AnimeUrl);
+            anime.FavouriteQuote = quoteDialog.TextReturned;
             AnimeRegistry.LoadIntoAnimeRegistry(anime);
         }
         
